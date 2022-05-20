@@ -99,7 +99,7 @@ content:
             Tools/Technologies: Snowflake, PySpark, NiFi, Airflow, Fivetran, dbt.
 
       - layout: left
-        title: COUP - Centro de Investigaci?n de la Universidad del Pac?fico
+        title: CIUP - Universidad del Pacifico
         link: up.edu.pe
         sub_title: Research Assistant
         caption: Seasonal
