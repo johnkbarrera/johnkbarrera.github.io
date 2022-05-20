@@ -59,15 +59,11 @@ content:
     layout: list # Type of content section (list/text)
     content:
       - layout: top-middle
-        subtitle: Analysis of the Health Network of Metropolitan Lima Against Large-Scale Earthquake
+        sub_title: Analysis of the Health Network of Metropolitan Lima Against Large-Scale Earthquake
         link: https://link.springer.com/chapter/10.1007%2F978-3-030-76228-5_32
         link_text: ISBN:978-3-030-76228-5
-        additional_links:
-          - title:  ISBN:978-3-030-76228-5
-            icon: fab fa-book-open-cover
-            url: https://link.springer.com/chapter/10.1007%2F978-3-030-76228-5_32
-        quote: >
-          This is probably one of the greatest apps ever created, if you don't agree you're probably wrong.
+        # quote: >
+        #   Analysis of the Health Network of Metropolitan Lima Against Large-Scale Earthquake.
         description: | 
           Peru is a highly seismic country located in the Ring of Fire, making it vulnerable to earthquakes and tsunamis. In the present work, we examined Lima?s health system capacity from three different and complementary points of view. This document aims to provide elements for the strengthening of the Peruvian fragile health system.
   - title: Experience # Title for the section
@@ -78,8 +74,8 @@ content:
         link: globant.com
         sub_title: Data Architect
         caption: August 2021 - Present
-        #quote: >
-        #  Seek Reinvention
+        # quote: >
+        #   Seek Reinvention
         description: | # this will include new lines to allow paragraphs
             Me and my team were involved in building the Data Architecture to Liga MX. We also built pipelines for many sources and sinks, trough Bronze, Silver and Gold Layer.
             <br>
