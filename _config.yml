@@ -6,10 +6,10 @@ favicon: images/favicon.ico
 version: 2
 
 # Personal info
-name: John Barrera
+name: John K. Barrera Contreras
 title: Senior Data Engineer
 email: john.barrera@unmsm.edu.pe
-website: https://johnkevinbarrera.github.io/
+website: johnkevinbarrera.github.io
 
 # Dark Mode (true/false/never)
 darkmode: false
@@ -45,7 +45,7 @@ additional_links:
 # google_analytics: "UA-00000000-0"
 
 # About Section
-# about_title: About Me
+about_title: About JK
 about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
   Hi, my name's John and I'm Systems Engineer. I'm captivated by Tech, Maths, and IA.
