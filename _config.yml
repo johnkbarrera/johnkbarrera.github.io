@@ -133,8 +133,8 @@ content:
       - layout: left
         title: Awards &amp; Certifications
         sub_title: Hackathons
-        # quote: >
-        #   Seek Reinvention
+        quote: >
+          Seek Reinvention
         content:
           - layout: text
             description: |
