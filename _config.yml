@@ -130,7 +130,7 @@ content:
   - title: A little more about JK
     layout: list
     content:
-      - layout: left
+      - layout: top-left
         title: Awards &amp; Certifications
         sub_title: Hackathons
         quote: >
@@ -148,7 +148,7 @@ content:
               Me also was:
                - Recipient of the ALIANZA DEL PACIFICO scholarship - Chile 2016
       
-      - layout: right
+      - layout: top-right
         title: Free occupations
         sub_title: Hobbies
         description: | # this will include new lines to allow paragraphs
