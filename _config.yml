@@ -91,11 +91,11 @@ content:
   - title: Education # Title for the section
     layout: list # Type of content section (list/text)
     content:
-      - layout: left
+      - layout: center
         title: Universidad Nacional Mayor de San Marcos
         caption: 2012 - 2017
         sub_title: BSc Systems Engineering
-        
+
   - title: A Little More About Me
     layout: text
     content: | # this will include new lines to allow paragraphs
