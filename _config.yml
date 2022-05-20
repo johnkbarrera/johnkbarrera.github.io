@@ -82,8 +82,8 @@ content:
         link: globant.com
         sub_title: Data Architect
         caption: August 2021 - Present
-        quote: >
-          Seek Reinvention
+        #quote: >
+        #  Seek Reinvention
         description: | # this will include new lines to allow paragraphs
             Me and my team were involved in building the Data Architecture to Liga MX, the stack of tool were: Azure, Databricks, Python, ADF, SQL, Azure Functions, Azure Data Lake Storage. We also built pipelines for many sources and sinks, trough Bronze, Silver and Gold Layer.
 
