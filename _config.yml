@@ -68,6 +68,9 @@ content:
           Peru is a highly seismic country located in the Ring of Fire, making it vulnerable to earthquakes and tsunamis. 
           In the present work, we examined Lima's health system capacity from three different and complementary points of view. 
           This document aims to provide elements for the strengthening of the Peruvian fragile health system.
+
+
+
   - title: Experience # Title for the section
     layout: list # Type of content section (list/text)
     content:
@@ -95,6 +98,8 @@ content:
             <br>
             Tools/Technologies: Snowflake, PySpark, NiFi, Airflow, Fivetran, dbt.
 
+
+
   - title: Education # Title for the section
     layout: list # Type of content section (list/text)
     content:
@@ -110,17 +115,21 @@ content:
         caption: University Exchange Program 2016 <br> (Scholarship Alianza del Pacifico).
         sub_title: Faculty of Economics and Business
 
-  - title: A little more about JK
-    layout: text
-    content: | # this will include new lines to allow paragraphs
-      Alongside my interests in networks and software engineering some of my other interests and hobbies are:
-      - Rock climbing
-      - Gaming
-      - Knitting
-      - [Becoming a ninja](https://www.youtube.com/watch?v=vtg4o__aRMg)
 
-      Look at this cool image  
-      ![Trees](/modern-resume-theme/images/landscape-trees.jpg "Trees")
+  - title: A little more about JK
+    layout: list
+    content:
+      - layout: text
+        sub_title: Data Architect
+        content: | # this will include new lines to allow paragraphs
+          Alongside my interests in networks and software engineering some of my other interests and hobbies are:
+          - Rock climbing
+          - Gaming
+          - Knitting
+          - [Becoming a ninja](https://www.youtube.com/watch?v=vtg4o__aRMg)
+
+          Look at this cool image  
+          ![Trees](/johnkevinbarrera.github.io/images/landscape-trees.jpg "Trees")
 
 # Footer
 footer_show_references: true
