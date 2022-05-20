@@ -119,6 +119,17 @@ content:
   - title: A little more about JK
     layout: list
     content:
+      - layout: left
+        title: Awards &amp; Certifications
+        sub_title: Awards &amp; Certifications
+        # quote: >
+        #   Seek Reinvention
+        description: | # this will include new lines to allow paragraphs
+            Me and my team were involved in building the Data Architecture to Liga MX. 
+            We also built pipelines for many sources and sinks, trough Bronze, Silver and Gold Layer.
+            <br>
+            Tools/Technologies: Azure, Databricks, Python, ADF, SQL, Azure Functions,  Azure Data Lake Storage.
+      
       - layout: text
         sub_title: Data Architect
         content: | # this will include new lines to allow paragraphs
