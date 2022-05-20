@@ -93,9 +93,16 @@ content:
     content:
       - layout: top-middle
         title: Universidad Nacional Mayor de San Marcos
+        link: unmsm.edu.pe
         caption: 2012 - 2017
         sub_title: BSc Systems Engineering
-        link: unmsm.edu.pe
+      - layout: top-middle
+        title: Universidad de Chile
+        link: www.uchile.cl
+        caption: 2016
+        sub_title: Faculty of Economics and Business
+        description: | 
+            University Exchange Program (Scholarship Alianza del Pac?fico).
 
   - title: A Little More About Me
     layout: text
