@@ -59,19 +59,16 @@ content:
     layout: list # Type of content section (list/text)
     content:
       - layout: top-middle
-        title: Super awesome project
-        link: github.com/sproogen
-        # link_text: Project Website
+        title: Analysis of the Health Network of Metropolitan Lima Against Large-Scale Earthquake
+        link: https://link.springer.com/chapter/10.1007%2F978-3-030-76228-5_32
+        link_text: ISBN:978-3-030-76228-5
         additional_links:
-          - title:  sproogen/modern-resume-theme
-            icon: fab fa-github
-            url: github.com/sproogen/modern-resume-theme
-          # - title:  Github page for project (eg. sproogen/modern-resume-theme)
-          #   icon: fab fa-github
-          #   url: Link to project (eg. sproogen.github.io/modern-resume-theme)
+          - title:  ISBN:978-3-030-76228-5
+            icon: fab <i class="fa-solid fa-book-open-cover"></i>
+            url: https://link.springer.com/chapter/10.1007%2F978-3-030-76228-5_32
         quote: >
           This is probably one of the greatest apps ever created, if you don't agree you're probably wrong.
-        description: | # this will include new lines to allow paragraphs
+        description: | 
           I started this project as a way if learning <mark>React</mark> and it has since grown into a fully fledged app. I have learned many skills through this and been I'm very proud of having this in my portfolio. If you don't have a project as awesome as this I would advise you make one.
 
   - title: Experience # Title for the section
@@ -85,7 +82,19 @@ content:
         #quote: >
         #  Seek Reinvention
         description: | # this will include new lines to allow paragraphs
-            Me and my team were involved in building the Data Architecture to Liga MX, the stack of tool were: Azure, Databricks, Python, ADF, SQL, Azure Functions, Azure Data Lake Storage. We also built pipelines for many sources and sinks, trough Bronze, Silver and Gold Layer.
+            Me and my team were involved in building the Data Architecture to Liga MX. We also built pipelines for many sources and sinks, trough Bronze, Silver and Gold Layer.
+            <br>
+            Tools/Technologies: Azure, Databricks, Python, ADF, SQL, Azure Functions,  Azure Data Lake Storage.
+
+      - layout: left
+        title: RAPPI
+        link: rappi.com
+        sub_title: Data Engineer
+        caption: October 2021 - August 2021
+        description: |
+            Data engineer at RAPPIBANK, giving general business support in everything related to RAPPIBANK data for LATAM, this implies presenting solutions, proposals, and elaboration of pipelines.
+            <br>
+            Tools/Technologies: Snowflake, PySpark, NiFi, Airflow, Fivetran, dbt.
 
   - title: Education # Title for the section
     layout: list # Type of content section (list/text)
@@ -95,14 +104,14 @@ content:
         link: unmsm.edu.pe
         caption: 2012 - 2017
         sub_title: BSc Systems Engineering
+
       - layout: top-middle
         title: Universidad de Chile
         link: www.uchile.cl
-        caption: 2016
+        caption: 2016 - University Exchange Program (Scholarship Alianza del Pacifico).
         sub_title: Faculty of Economics and Business
-        description: University Exchange Program (Scholarship Alianza del Pacifico).
 
-  - title: A Little More About Me
+  - title: A little more about JK
     layout: text
     content: | # this will include new lines to allow paragraphs
       Alongside my interests in networks and software engineering some of my other interests and hobbies are:
