@@ -51,7 +51,7 @@ about_content: | # this will include new lines to allow paragraphs
   Hi, my name's John and I'm Systems Engineer. I'm captivated by Tech, Maths, and IA.
   I have worked as a Research assistant, Data Engineer, and of course like Data Scientist. 
   Me is also interested not only in projects that involve tech, else and especially in social projects that involves a community and ecological spirit.
-  
+  <br>
   I am most skilled in: <mark>Python</mark> and <mark>Playing guitar</mark>
 
 content:
