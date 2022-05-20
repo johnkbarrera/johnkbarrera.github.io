@@ -121,22 +121,21 @@ content:
     content:
       - layout: left
         title: Awards &amp; Certifications
-        sub_title: Awards &amp; Certifications
+        sub_title: Hackathons
         # quote: >
         #   Seek Reinvention
-        description: | # this will include new lines to allow paragraphs
-            Me and my team were involved in building the Data Architecture to Liga MX. 
-            We also built pipelines for many sources and sinks, trough Bronze, Silver and Gold Layer.
-            <br>
-            Tools/Technologies: Azure, Databricks, Python, ADF, SQL, Azure Functions,  Azure Data Lake Storage.
+        description: |
+          Me also participate, in some hackathon:
+          - 2<sup>rd</sup> Place - Hackathon Contact Tracing  - Hackathon 2020
+          - 1<sup>rd</sup> Place - HACKATHON ARTTEC - Hackathon 2018
+          - 1<sup>rd</sup>  Place - IBM CODING DAY: HACKATHON POR UN PERÚ #SINANEMIA - Hackathon 2018
       
       - layout: right
-        sub_title: Data Architect
-        content: | # this will include new lines to allow paragraphs
+        sub_title: Free occupations
+        description: | # this will include new lines to allow paragraphs
           Alongside my interests in networks and software engineering some of my other interests and hobbies are:
-          - Rock climbing
+          - Playing guitar
           - Gaming
-          - Knitting
           - [Becoming a ninja](https://www.youtube.com/watch?v=vtg4o__aRMg)
 
           Look at this cool image  
