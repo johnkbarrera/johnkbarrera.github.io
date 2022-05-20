@@ -1,6 +1,6 @@
 # Site
 repository: sproogen/resume-theme
-favicon: images/favicon.ico
+favicon: images/oso_anteojos.png
 
 # Content configuration version
 version: 2
@@ -65,7 +65,9 @@ content:
         # quote: >
         #   Analysis of the Health Network of Metropolitan Lima Against Large-Scale Earthquake.
         description: | 
-          Peru is a highly seismic country located in the Ring of Fire, making it vulnerable to earthquakes and tsunamis. In the present work, we examined Lima?s health system capacity from three different and complementary points of view. This document aims to provide elements for the strengthening of the Peruvian fragile health system.
+          Peru is a highly seismic country located in the Ring of Fire, making it vulnerable to earthquakes and tsunamis. 
+          In the present work, we examined Lima's health system capacity from three different and complementary points of view. 
+          This document aims to provide elements for the strengthening of the Peruvian fragile health system.
   - title: Experience # Title for the section
     layout: list # Type of content section (list/text)
     content:
@@ -77,7 +79,8 @@ content:
         # quote: >
         #   Seek Reinvention
         description: | # this will include new lines to allow paragraphs
-            Me and my team were involved in building the Data Architecture to Liga MX. We also built pipelines for many sources and sinks, trough Bronze, Silver and Gold Layer.
+            Me and my team were involved in building the Data Architecture to Liga MX. 
+            We also built pipelines for many sources and sinks, trough Bronze, Silver and Gold Layer.
             <br>
             Tools/Technologies: Azure, Databricks, Python, ADF, SQL, Azure Functions,  Azure Data Lake Storage.
 
@@ -87,7 +90,8 @@ content:
         sub_title: Data Engineer
         caption: October 2021 - August 2021
         description: |
-            Data engineer at RAPPIBANK, giving general business support in everything related to RAPPIBANK data for LATAM, this implies presenting solutions, proposals, and elaboration of pipelines.
+            Data engineer at RAPPIBANK, giving general business support in everything related to RAPPIBANK data for LATAM, 
+            this implies presenting solutions, proposals, and elaboration of pipelines.
             <br>
             Tools/Technologies: Snowflake, PySpark, NiFi, Airflow, Fivetran, dbt.
 
