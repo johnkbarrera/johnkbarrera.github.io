@@ -64,7 +64,7 @@ content:
         link_text: ISBN:978-3-030-76228-5
         additional_links:
           - title:  ISBN:978-3-030-76228-5
-            icon: fab <i class="fa-solid fa-book-open-cover"></i>
+            icon: fab fa-book-open-cover
             url: https://link.springer.com/chapter/10.1007%2F978-3-030-76228-5_32
         quote: >
           This is probably one of the greatest apps ever created, if you don't agree you're probably wrong.
