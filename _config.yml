@@ -104,10 +104,10 @@ content:
         sub_title: Research Assistant
         caption: Seasonal
         description: |
-            Data engineer at RAPPIBANK, giving general business support in everything related to RAPPIBANK data for LATAM, 
-            this implies presenting solutions, proposals, and elaboration of pipelines.
-            <br>
-            Tools/Technologies: Snowflake, PySpark, NiFi, Airflow, Fivetran, dbt.
+            I collaborated in research projects for World Bank, all results where published in Analysis of the Health 
+            Network of Metropolitan Lima Against Large-Scale Earthquakes; 
+            and PCM (Contact Tracing, and analysis of the probability of contagion of covid19 based on their interactions).
+
 
 
 
