@@ -137,14 +137,14 @@ content:
           Seek Reinvention
         content:
           - layout: text
-            description: |
+            content: |
               Me also participate, in some hackathon:
               - 2<sup>rd</sup> Place - Hackathon Contact Tracing  - Hackathon 2020
               - 1<sup>rd</sup> Place - HACKATHON ARTTEC - Hackathon 2018
               - 1<sup>rd</sup>  Place - IBM CODING DAY: HACKATHON POR UN PERÚ #SINANEMIA - Hackathon 2018
 
           - layout: text
-            description: |
+            content: |
               Me also was:
                - Recipient of the ALIANZA DEL PACIFICO scholarship - Chile 2016
       
@@ -158,7 +158,7 @@ content:
           - [Becoming a ninja](https://www.youtube.com/watch?v=vtg4o__aRMg)
 
           Look at this cool image  
-          ![Trees](https://johnkevinbarrera.github.io//images/landscape-trees.jpg "Trees")
+          ![Trees](https://johnkevinbarrera.github.io/images/landscape-trees.jpg "Trees")
 
 # Footer
 footer_show_references: true
