@@ -74,7 +74,7 @@ content:
   - title: Experience # Title for the section
     layout: list # Type of content section (list/text)
     content:
-      - layout: left
+      - layout: top-left
         title: Globant
         link: globant.com
         sub_title: Data Architect
@@ -87,7 +87,7 @@ content:
             <br>
             Tools/Technologies: Azure, Databricks, Python, ADF, SQL, Azure Functions,  Azure Data Lake Storage.
 
-      - layout: left
+      - layout: top-left
         title: RAPPI
         link: rappi.com
         sub_title: Data Engineer
@@ -98,7 +98,7 @@ content:
             <br>
             Tools/Technologies: Snowflake, PySpark, NiFi, Airflow, Fivetran, dbt.
 
-      - layout: left
+      - layout: top-left
         title: CIUP - Universidad del Pacifico
         link: up.edu.pe
         sub_title: Research Assistant
@@ -142,18 +142,13 @@ content:
         sub_title: Hackathons
         quote: >
           Seek Reinvention
-        description:
-          - layout: text
-            content: |
-              Me also participate, in some hackathon:
+        description: |
+          Me also participate, in some hackathon:
               - 2<sup>rd</sup> Place - Hackathon Contact Tracing  - Hackathon 2020
               - 1<sup>rd</sup> Place - HACKATHON ARTTEC - Hackathon 2018
-              - 1<sup>rd</sup>  Place - IBM CODING DAY: HACKATHON POR UN PERÚ #SINANEMIA - Hackathon 2018
-
-          - layout: text
-            content: |
-              Me also was:
-               - Recipient of the ALIANZA DEL PACIFICO scholarship - Chile 2016
+              - 1<sup>rd</sup>  Place - IBM CODING DAY: HACKATHON POR UN PERU #SINANEMIA - Hackathon 2018
+          Me also was:
+              - Recipient of the ALIANZA DEL PACIFICO scholarship - Chile 2016
       
       - layout: top-right
         title: Free occupations
