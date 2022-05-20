@@ -48,10 +48,9 @@ additional_links:
 # about_title: About Me
 about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Hi, my name's John and I'm Systems Engineer. I'm captivated by IT, statistics, Big Data, MLearning, Blockchain, IoT, and the development of web applications and mobile apps. 
-  I have experience at the bank, telecommunications, researching, and building.
-  I have worked as a research assistant in Cryptocurrency Technologies and Blockchain, also in data analysis, NLP, and artificial intelligence. 
-  I am interested in projects that involve Big Data, statistics, ML, and Data Science, especially in social projects and with a big community and ecological spirit.
+  Hi, my name's John and I'm Systems Engineer. I'm captivated by Tech, Maths, and IA.
+  I have worked as a Research assistant, Data Engineer, and of course like Data Scientist. 
+  Me is also interested not only in projects that involve tech, else and especially in social projects that involves a community and ecological spirit.
   I am most skilled in: <mark>Python</mark> and <mark>Playing guitar</mark>
 
 content:
