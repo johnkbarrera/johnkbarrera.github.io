@@ -98,6 +98,17 @@ content:
             <br>
             Tools/Technologies: Snowflake, PySpark, NiFi, Airflow, Fivetran, dbt.
 
+      - layout: left
+        title: RAPPI
+        link: up.edu.pe
+        sub_title: Data Engineer
+        caption: October 2021 - August 2021
+        description: |
+            Data engineer at RAPPIBANK, giving general business support in everything related to RAPPIBANK data for LATAM, 
+            this implies presenting solutions, proposals, and elaboration of pipelines.
+            <br>
+            Tools/Technologies: Snowflake, PySpark, NiFi, Airflow, Fivetran, dbt.
+
 
 
   - title: Education # Title for the section
@@ -129,7 +140,7 @@ content:
           - 2<sup>rd</sup> Place - Hackathon Contact Tracing  - Hackathon 2020
           - 1<sup>rd</sup> Place - HACKATHON ARTTEC - Hackathon 2018
           - 1<sup>rd</sup>  Place - IBM CODING DAY: HACKATHON POR UN PERÚ #SINANEMIA - Hackathon 2018
-          <br><br>
+        |
           Me also participate, in some hackathon:
           - Recipient of the ALIANZA DEL PACIFICO scholarship - Chile 2016
       
