@@ -135,7 +135,7 @@ content:
         sub_title: Hackathons
         # quote: >
         #   Seek Reinvention
-        description:
+        content:
           - layout: text
             description: |
               Me also participate, in some hackathon:
