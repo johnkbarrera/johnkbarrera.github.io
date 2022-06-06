@@ -9,20 +9,20 @@ version: 2
 name: John K. Barrera Contreras
 title: Senior Data Engineer
 email: john.barrera@unmsm.edu.pe
-website: johnkevinbarrera.github.io
+website: johnkbarrera.github.io
 
 # Dark Mode (true/false/never)
 darkmode: false
 
 # Social links
 twitter_username: johnkbarrera
-github_username:  johnkevinbarrera
+github_username:  johnkbarrera
 # stackoverflow_username: "00000001"
 # dribbble_username: jekyll
 # facebook_username: jekyll
 # flickr_username: jekyll
-instagram_username: johnkevinx
-linkedin_username: jkbarrera
+instagram_username: johnkbarrera
+linkedin_username: johnkbarrera
 # xing_username: jekyll
 # pinterest_username: jekyll
 # youtube_username: globalmtb
@@ -31,9 +31,9 @@ linkedin_username: jkbarrera
 
 # Additional icon links
 additional_links:
-- title: johnkevinbarrera
+- title: johnkbarrera
   icon: fas fa-globe
-  url: https://johnkevinbarrera.github.io/
+  url: https://johnkbarrera.github.io/
 # - title: another link
 #   icon: font awesome brand icon name (eg. fab fa-twitter) (https://fontawesome.com/icons?d=gallery&m=free)
 #   url: Link url (eg. https://google.com)
