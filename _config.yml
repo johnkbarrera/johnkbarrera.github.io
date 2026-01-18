@@ -32,7 +32,7 @@ additional_links:
 
 # About Section
 about_title: About Me
-about_profile_image: images/profile.png
+about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
   Hi, I'm John Kevin Barrera Contreras, a Computer Scientist from Peru with a strong foundation in mathematics, 
   artificial intelligence, and software development. My upbringing in rural communities shaped my commitment to 
@@ -312,4 +312,22 @@ content:
     content: |
       Beyond my professional work in data science and computer science, I'm passionate about:
       
-      - 🎸 **Music:** Playi
+      - 🎸 **Music:** Playing guitar and exploring different musical genres
+      - 🎮 **Gaming:** Strategy games and problem-solving challenges
+      - 🌱 **Social Impact:** Community projects with ecological and social focus
+      - 🥷 **Continuous Learning:** [Always seeking new challenges](https://www.youtube.com/watch?v=vtg4o__aRMg)
+      - 🌍 **Technology for Good:** Leveraging tech for sustainable development in rural communities
+
+# Footer
+footer_show_references: true
+references_title: References available upon request
+
+# Build settings
+remote_theme: sproogen/resume-theme
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+plugins:
+ - jekyll-seo-tag
