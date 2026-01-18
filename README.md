@@ -19,7 +19,7 @@ Computer Scientist from Peru with a passion for leveraging **data science** and 
 
 ---
 
-## 🛠️ Tech Stack
+<!-- ## 🛠️ Tech Stack
 
 ### Languages
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -127,4 +127,4 @@ Decentralized applications: Rocket & Black Rabbits Get Lost In The Woods.
 
 ⭐️ From [johnkbarrera](https://github.com/johnkbarrera)
 
-</div>
+</div> -->
