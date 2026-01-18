@@ -4,4 +4,4 @@
 _site
 Gemfile.lock
 *.code-workspace
-.docs/jobs
+docs/jobs
