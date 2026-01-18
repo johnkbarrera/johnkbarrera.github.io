@@ -59,44 +59,6 @@ Computer Scientist from Peru with a passion for leveraging **data science** and 
 
 ---
 
-## 💼 Professional Experience
-
-```yaml
-current:
-  role: "Data Scientist Consultant"
-  company: "The World Bank"
-  location: "Lima & Washington D.C."
-  period: "Jan 2023 - Present"
-  focus: ["Graph Theory", "Health Systems", "Risk Assessment", "ML"]
-
-previous:
-  - role: "Data Architect"
-    company: "Globant"
-    period: "Aug 2021 - Dec 2024"
-    highlights: ["Liga MX Data Architecture", "BICE Bank Platform", "Azure & GCP"]
-  
-  - role: "Data Engineer"
-    company: "Rappi"
-    period: "Oct 2020 - Aug 2021"
-    highlights: ["RappiBank", "Graph Databases", "Data Governance"]
-```
-
----
-
-## 📊 GitHub Statistics
-
-<div align="center">
-  
-![John's GitHub stats](https://github-readme-stats.vercel.app/api?username=johnkbarrera&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=johnkbarrera&layout=compact&theme=tokyonight&hide_border=true)
-
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=johnkbarrera&theme=tokyonight&hide_border=true)
-
-</div>
-
----
-
 ## 🏆 Achievements & Awards
 
 🥇 **1st Place** - IBM CODING DAY: Hackathon por un Perú #SINANEMIA (2018)  
