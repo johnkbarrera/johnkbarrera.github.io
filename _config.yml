@@ -6,173 +6,310 @@ favicon: images/oso_anteojos.png
 version: 2
 
 # Personal info
-name: John K. Barrera Contreras
-title: Data Engineer
-email: john.barrera@unmsm.edu.pe
+name: John Kevin Barrera Contreras
+title: Data Scientist & Computer Scientist
+email: johnkevinbarrera@gmail.com
 website: johnkbarrera.github.io
+phone: +(51) 967016935
 
 # Dark Mode (true/false/never)
 darkmode: false
 
 # Social links
 twitter_username: johnkbarrera
-github_username:  johnkbarrera
-# stackoverflow_username: "00000001"
-# dribbble_username: jekyll
-# facebook_username: jekyll
-# flickr_username: jekyll
+github_username: johnkbarrera
 instagram_username: johnkbarrera
 linkedin_username: johnkbarrera
-# xing_username: jekyll
-# pinterest_username: jekyll
-# youtube_username: globalmtb
-# googleplus_username: +jekyll
-# orcid_username: 0000-0000-0000-0000
 
 # Additional icon links
 additional_links:
-- title: johnkbarrera
+- title: Google Scholar
+  icon: fas fa-graduation-cap
+  url: https://scholar.google.com/citations?user=-u4Q3zAAAAAJ&hl=es
+- title: Portfolio
   icon: fas fa-globe
   url: https://johnkbarrera.github.io/
-# - title: another link
-#   icon: font awesome brand icon name (eg. fab fa-twitter) (https://fontawesome.com/icons?d=gallery&m=free)
-#   url: Link url (eg. https://google.com)
-
-# Google Analytics and Tag Manager
-# Using more than one of these may cause issues with reporting
-# gtm: "GTM-0000000"
-# gtag: "UA-00000000-0"
-# google_analytics: "UA-00000000-0"
 
 # About Section
-about_title: About JK
+about_title: About Me
 about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Hi, my name's John and I'm Systems Engineer. I'm captivated by Tech, Maths, and IA.
-  I have worked as a Research assistant, Data Engineer, and of course like Data Scientist. 
-  Me is also interested not only in projects that involve tech, else and especially in social projects that involves a community and ecological spirit.
-  <br>
-  I am most skilled in: <mark>Python</mark> and <mark>Playing guitar</mark>
+  Hi, I'm John Kevin Barrera Contreras, a Computer Scientist from Peru with a strong foundation in mathematics, 
+  artificial intelligence, and software development. My upbringing in rural communities shaped my commitment to 
+  leveraging technology for social impact and sustainable development.
+  
+  With expertise spanning machine learning, data science, and systems architecture, I specialize in rapid prototyping 
+  and proof-of-concept development using Python. My work focuses on translating complex technical challenges into 
+  practical, scalable solutions, currently exploring the intersection of data science and social good.
+  
+  **Core Competencies:** <mark>Data Architecture</mark>, <mark>Machine Learning</mark>, <mark>Python</mark>, 
+  <mark>Graph Theory</mark>, <mark>Big Data</mark>, and <mark>Cloud Technologies (Azure, GCP)</mark>
 
 content:
-  - title: Publications # Title for the section
-    layout: list # Type of content section (list/text)
+  - title: Professional Experience
+    layout: list
     content:
-      - layout: top-middle
-        sub_title: Analysis of the Health Network of Metropolitan Lima Against Large-Scale Earthquake
-        link: https://link.springer.com/chapter/10.1007%2F978-3-030-76228-5_32
-        link_text: ISBN:978-3-030-76228-5
-        # quote: >
-        #   Analysis of the Health Network of Metropolitan Lima Against Large-Scale Earthquake.
-        description: | 
-          Peru is a highly seismic country located in the Ring of Fire, making it vulnerable to earthquakes and tsunamis. 
-          In the present work, we examined Lima's health system capacity from three different and complementary points of view. 
-          This document aims to provide elements for the strengthening of the Peruvian fragile health system.
+      - layout: left
+        title: The World Bank
+        link: worldbank.org
+        sub_title: Data Scientist Consultant
+        caption: January 2023 - December 2025
+        quote: >
+          Leveraging data science for development impact
+        description: |
+          Research project focused on measuring risk and accessibility to health systems across multiple countries. 
+          Developed innovative approaches combining:
+          - Graph theory and geographic datasets for accessibility modeling
+          - Machine learning models for risk assessment and prediction
+          - Comparative analysis with existing country-specific methodologies
+          - Mathematical modeling and algorithm development for large-scale data processing
+          
+          **Technologies:** Python, Machine Learning, Graph Theory, Geospatial Analysis, Big Data
+          
+          *This project is part of my master's degree research.*
 
-
-
-  - title: Experience # Title for the section
-    layout: list # Type of content section (list/text)
-    content:
-      - layout: top-left
+      - layout: left
         title: Globant
         link: globant.com
         sub_title: Data Architect
-        caption: August 2021 - Present
-        # quote: >
-        #   Seek Reinvention
-        description: | # this will include new lines to allow paragraphs
-            Me and my team were involved in building the Data Architecture to Liga MX. 
-            We also built pipelines for many sources and sinks, trough Bronze, Silver and Gold Layer.
-            <br>
-            Tools/Technologies: Azure, Databricks, Python, ADF, SQL, Azure Functions,  Azure Data Lake Storage.
+        caption: August 2021 - December 2024
+        quote: >
+          Building scalable data architectures for enterprise clients
+        description: |
+          Led multiple high-impact data architecture projects:
+          
+          **Liga MX Data Architecture (Mexico & LATAM)**
+          - Designed and implemented end-to-end data architecture using Azure ecosystem
+          - Built scalable pipelines connecting multiple sources through Bronze, Silver, and Gold layers
+          - Enabled data-driven decision making for one of Latin America's premier football leagues
+          
+          **BICE Bank Foundation Platform (Chile)**
+          - Architected batch processing platform on Google Cloud Platform
+          - Designed secure data governance framework for financial institution
+          - Enabled large-scale data processing and analytics capabilities
+          
+          **InStride Platform Enhancement**
+          - Collaborated on proof-of-concept development and platform improvements
+          - Defined comprehensive data taxonomy for multi-environment deployments
+          - Contributed to development team as architecture consultant
+          
+          **Technologies:** Azure (Databricks, ADF, Data Lake Storage, Functions), GCP, Python, PySpark, SQL
 
-      - layout: top-left
-        title: RAPPI
+      - layout: left
+        title: Rappi
         link: rappi.com
         sub_title: Data Engineer
-        caption: October 2021 - August 2021
+        caption: October 2020 - August 2021
+        quote: >
+          Empowering fintech innovation through data
         description: |
-            Data engineer at RAPPIBANK, giving general business support in everything related to RAPPIBANK data for LATAM, 
-            this implies presenting solutions, proposals, and elaboration of pipelines.
-            <br>
-            Tools/Technologies: Snowflake, PySpark, NiFi, Airflow, Fivetran, dbt.
+          Data Engineer at RAPPIBANK, providing comprehensive business support for data-related initiatives across LATAM:
+          - Developed end-to-end data solutions, proposals, and ETL/ELT pipelines
+          - Specialized in graph-based data storage for complex relationship modeling
+          - Implemented data governance and quality frameworks
+          - Supported analytical models requiring geographical analysis, degree-of-separation calculations, and transaction data
+          - Explored and implemented CDC (Change Data Capture) solutions
+          
+          **Technologies:** Snowflake, PySpark, Apache NiFi, Airflow, Fivetran, dbt, S3, AWS Glue, Neo4j, PostgreSQL
 
-      - layout: top-left
-        title: CIUP - Universidad del Pacifico
+      - layout: left
+        title: Research Center - Universidad del Pacífico
         link: up.edu.pe
-        sub_title: Research Assistant
-        caption: Seasonal
+        sub_title: Data Scientist & Research Assistant
+        caption: April 2020 - September 2020
+        quote: >
+          Advancing research at the intersection of data science and social impact
         description: |
-            Details: I collaborated in research projects for World Bank, all results where published in Analysis of the Health 
-            Network of Metropolitan Lima Against Large-Scale Earthquakes; 
-            and PCM (Contact Tracing, and analysis of the probability of contagion of covid19 based on their interactions).
-            <br><br>
-            Leading researchers: M. Nunez del prado, Ph.D y H. Alatrista S., Ph.D. <br>
-            Details: I contributed by analyzing and mining of customer buying behaviors using unsupervised methods (machine learning) and NLP.
-            <br><br>
-            Leading researcher: F. Rosales M., Ph.D.<br>
-            Details: Research projects on Blockchain, creation of a cryptocurrency from a Bitcoin fork. 
-            Dapps development on the Ethereum platform, as well as web application development through API. Development of algorithms in R and Julia languages.
+          Collaborated on diverse research projects spanning public health, consumer behavior, and blockchain:
+          
+          **World Bank & PCM Projects**
+          - Co-authored research published in "Analysis of the Health Network of Metropolitan Lima Against Large-Scale Earthquakes"
+          - Developed contact tracing algorithms and COVID-19 contagion probability models
+          - Simulated emergency scenarios and optimized routes using graph theory
+          
+          **Consumer Behavior Analysis**
+          - Applied unsupervised machine learning and NLP to mine customer buying patterns
+          - Led by M. Núñez del Prado, Ph.D. and H. Alatrista S., Ph.D.
+          
+          **Blockchain Research**
+          - Created educational cryptocurrency from Bitcoin fork
+          - Developed DApps on Ethereum platform with API integration
+          - Algorithm development in R and Julia (Led by F. Rosales M., Ph.D.)
 
+      - layout: left
+        title: INDRA
+        link: indracompany.com
+        sub_title: Data Engineer
+        caption: August 2019 - November 2019
+        description: |
+          Telecommunications Data Lake Project:
+          - Modeled data domains for enterprise data lake architecture
+          - Improved data quality processes across Raw, Silver, and Gold layers
+          - Implemented data ingestion pipelines using Hortonworks stack
 
+      - layout: left
+        title: Everis (NTT Data)
+        link: nttdata.com
+        sub_title: Data Engineer
+        caption: May 2018 - May 2019
+        description: |
+          Big Data implementations for Peruvian banking sector:
+          - Developed solutions using Apache ecosystem (Hadoop, Hive, Spark, Sqoop, Kafka, HBase, Zookeeper)
+          - Worked with Databricks, Cassandra for distributed data processing
+          - Created multiple proof-of-concepts for client evaluation
+          - Completed comprehensive Big Data training and certification
 
+      - layout: left
+        title: ONPE-GSFP
+        link: onpe.gob.pe
+        sub_title: Systems Engineer Intern
+        caption: August 2017 - December 2017
+        description: |
+          Electoral data processing and validation:
+          - Developed ETL processes for political organization reports
+          - Implemented data cleaning and validation against RENIEC database
+          - Created error verification and user confirmation workflows
 
-  - title: Education # Title for the section
-    layout: list # Type of content section (list/text)
+  - title: Education
+    layout: list
     content:
-      - layout: top-middle
+      - layout: left
+        title: Pontificia Universidad Católica del Perú
+        link: pucp.edu.pe
+        caption: 2022 - 2023
+        sub_title: Master of Science in Computer Science
+        description: |
+          Advanced studies in artificial intelligence, machine learning, and computational methods.
+          
+          **Master's Thesis:** Research project with The World Bank on measuring risk and accessibility 
+          to health systems using graph theory and machine learning.
+
+      - layout: left
         title: Universidad Nacional Mayor de San Marcos
         link: unmsm.edu.pe
         caption: 2012 - 2017
-        sub_title: BSc. Systems Engineering
+        sub_title: Bachelor of Science in Systems Engineering
+        description: |
+          Comprehensive foundation in computer science, mathematics, and software engineering.
 
-      - layout: top-middle
+      - layout: left
         title: Universidad de Chile
-        link: www.uchile.cl
-        caption: University Exchange Program 2016 <br> (Scholarship Alianza del Pacifico).
-        sub_title: Faculty of Economics and Business
+        link: uchile.cl
+        caption: 2016
+        sub_title: Exchange Program - Faculty of Economics and Business
+        quote: >
+          Recipient of Alianza del Pacífico Scholarship
+        description: |
+          International exchange program focused on economics and business analytics.
 
-
-  - title: A little more about JK
+  - title: Publications & Research
     layout: list
     content:
-      - layout: top-left
-        title: Awards &amp; Certifications
-        sub_title: Hackathons
+      - layout: top-middle
+        title: Analysis of the Health Network of Metropolitan Lima Against Large-Scale Earthquake
+        link: https://link.springer.com/chapter/10.1007/978-3-030-76228-5_32
+        caption: Springer - ISBN 978-3-030-76228-5
         quote: >
-          Seek Reinvention
+          Contributing to disaster preparedness through data-driven analysis
         description: |
-          Me also participate, in some hackathon:
-          - 2<sup>rd</sup> Place - Hackathon Contact Tracing  - Hackathon 2020
-          - 1<sup>rd</sup> Place - HACKATHON ARTTEC - Hackathon 2018
-          - 1<sup>rd</sup>  Place - IBM CODING DAY: HACKATHON POR UN PERU #SINANEMIA - Hackathon 2018
-          <br><br>
-          Me also was:
-          - Recipient of the ALIANZA DEL PACIFICO scholarship - Chile 2016
+          Peru is a highly seismic country located in the Ring of Fire, making it vulnerable to earthquakes and tsunamis. 
+          This research examines Lima's health system capacity from three different and complementary perspectives, 
+          utilizing graph theory, geographic information systems, and simulation modeling.
+          
+          **Key Contributions:**
+          - Multi-dimensional analysis of health network resilience
+          - Accessibility modeling under disaster scenarios
+          - Policy recommendations for health system strengthening
+          
+          **Research Methods:** Graph Theory, Geospatial Analysis, Network Modeling, Simulation
+          
+          **Impact:** Provides critical evidence for strengthening Peru's fragile health infrastructure against seismic events.
+
+  - title: Notable Projects
+    layout: list
+    content:
+      - layout: left
+        title: PCM - MINSA Contact Tracing
+        sub_title: "Peru in Your Hands - COVID-19 Response"
+        description: |
+          Developed contact tracing algorithms and contagion probability models for Peru's Ministry of Health.
+          Applied graph theory and machine learning to public health crisis response.
+
+      - layout: left
+        title: World Bank Health Network Analysis
+        sub_title: Earthquake Preparedness Research
+        description: |
+          Multi-country research project analyzing health system accessibility and risk in seismic-prone regions.
+          Published research informing policy decisions for disaster preparedness.
+
+      - layout: left
+        title: VacBs - Mobile App for Dairy Production
+        link_text: View Informative Note
+        description: |
+          Collaboration with INIA, UP, and UALM to create mobile application for artisanal milk production.
+          Implemented neural networks for quality prediction and production optimization.
+
+      - layout: left
+        title: EsanCoin/CiupCoin
+        sub_title: Educational Cryptocurrency
+        link_text: View Tutorial
+        description: |
+          Created educational cryptocurrency based on Bitcoin and Learncoin source code.
+          Developed comprehensive video tutorial series for blockchain education.
+
+      - layout: left
+        title: Ethereum DApps Development
+        sub_title: "Projects: Rocket & Black Rabbits Get Lost In The Woods"
+        description: |
+          Developed decentralized applications on Ethereum blockchain platform.
+          Explored smart contract development and blockchain-based solutions.
+
+  - title: Achievements & Recognition
+    layout: list
+    content:
+      - layout: left
+        title: Hackathons
+        quote: >
+          Innovation through collaboration
+        description: |
+          **2020**
+          - 🥈 2nd Place - Hackathon Contact Tracing (COVID-19 Response)
+          
+          **2018**
+          - 🥇 1st Place - HACKATHON ARTTEC (Art & Technology)
+          - 🥇 1st Place - IBM CODING DAY: Hackathon for a Peru #SINANEMIA (Social Impact)
+
+      - layout: left
+        title: Scholarships & Awards
+        description: |
+          **2016**
+          - 🎓 Recipient of Alianza del Pacífico Scholarship
+          - Competitive international exchange program across Pacific Alliance countries
+
+  - title: Skills & Technologies
+    layout: text
+    content: |
+      **Programming Languages:** Python, R, Julia, SQL, Scala
       
-      - layout: top-right
-        title: Free occupations
-        sub_title: Hobbies
-        description: | # this will include new lines to allow paragraphs
-          Alongside my interests in networks and software engineering some of my other interests and hobbies are:
-          - Playing guitar
-          - Gaming
-          - [Becoming a ninja](https://www.youtube.com/watch?v=vtg4o__aRMg)
+      **Data Engineering:** Apache Spark (PySpark), Airflow, NiFi, dbt, Fivetran, Sqoop, Kafka
+      
+      **Cloud Platforms:** Azure (Databricks, ADF, Data Lake Storage, Functions), Google Cloud Platform, AWS (S3, Glue)
+      
+      **Databases:** Snowflake, PostgreSQL, Neo4j, Cassandra, HBase
+      
+      **Big Data Stack:** Hadoop, Hive, HBase, Zookeeper, Hortonworks
+      
+      **Machine Learning:** Scikit-learn, TensorFlow, PyTorch, NLP, Unsupervised Learning
+      
+      **Data Visualization:** Tableau, Power BI, Matplotlib, Seaborn
+      
+      **Specialized:** Graph Theory, Network Analysis, Geospatial Analysis, Mathematical Modeling
+      
+      **Blockchain:** Ethereum, Bitcoin, Smart Contracts, DApp Development
 
-# Look at this cool image  
-# ![Trees](https://johnkevinbarrera.github.io/images/landscape-trees.jpg "Trees")
-
-# Footer
-footer_show_references: true
-# references_title: References on request (Override references text)
-
-# Build settings
-remote_theme: sproogen/resume-theme
-
-sass:
-  sass_dir: _sass
-  style: compressed
-
-plugins:
- - jekyll-seo-tag
+  - title: Interests & Hobbies
+    layout: text
+    content: |
+      Beyond my professional work in data science and computer science, I'm passionate about:
+      
+      - 🎸 **Music:** Playi
