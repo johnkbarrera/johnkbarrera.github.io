@@ -9,9 +9,8 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #0d0d0d;
-  border-bottom: 1px solid #00ff9f44;
-  box-shadow: 0 0 18px #00ff9f22;
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
 
   &__inner {
     max-width: 1100px;
@@ -27,11 +26,11 @@
     font-size: 1.7rem;
     font-weight: 700;
     letter-spacing: 0.35em;
-    color: #00ff9f;
+    color: #b94d3a;
     text-transform: uppercase;
     text-decoration: none;
     font-family: 'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
-    text-shadow: 0 0 8px #00ff9f99, 0 0 20px #00ff9f44;
+    text-shadow: 0 0 8px #b94d3a66, 0 0 20px #b94d3a33;
   }
 
   &__links {
@@ -47,15 +46,15 @@
     font-weight: 500;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #a0a0a0;
+    color: #888;
     text-decoration: none;
     transition: color 0.2s, text-shadow 0.2s;
     cursor: pointer;
     font-family: 'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
 
     &:hover {
-      color: #00ff9f;
-      text-shadow: 0 0 8px #00ff9f88;
+      color: #b94d3a;
+      text-shadow: 0 0 8px #b94d3a55;
     }
   }
 
@@ -74,8 +73,8 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(0);
-    background: #0d0d0d;
-    border: 1px solid #00ff9f44;
+    background: #fff;
+    border: 1px solid #e8e8e8;
     border-radius: 4px;
     list-style: none;
     margin: 0;
@@ -92,22 +91,22 @@
     font-size: 1.56rem;
     font-weight: 500;
     letter-spacing: 0.2em;
-    color: #555;
+    color: #888;
     text-decoration: none;
     white-space: nowrap;
     font-family: 'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
 
     &:hover {
-      color: #00ff9f;
-      background: #00ff9f11;
-      text-shadow: 0 0 6px #00ff9f66;
+      color: #b94d3a;
+      background: #f5e3df;
+      text-shadow: 0 0 6px #b94d3a44;
     }
   }
 
   &__link--active {
-    color: #00ff9f;
-    text-shadow: 0 0 8px #00ff9f88;
-    border-bottom: 2px solid #00ff9f;
+    color: #b94d3a;
+    text-shadow: 0 0 8px #b94d3a55;
+    border-bottom: 2px solid #b94d3a;
     padding-bottom: 2px;
   }
 }
