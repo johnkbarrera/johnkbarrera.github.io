@@ -102,25 +102,26 @@
 
   &__link--active {
     color: #111;
-    border-bottom: 2px solid #1a7a8a;
+    border-bottom: 2px solid #be8c22;
     padding-bottom: 2px;
   }
 }
 
 // ─── Portfolio ────────────────────────────────────────────────────────────────
 
-$pf-dark:        #0d3b47;
-$pf-teal:        #1a7a8a;
-$pf-teal-light:  #e6f4f6;
-$pf-amber:       #e8a838;
-$pf-amber-light: #fdf3dc;
-$pf-green:       #2d8a5e;
-$pf-green-light: #e4f5ee;
-$pf-indigo:      #4a43a0;
-$pf-indigo-light:#eeecf8;
-$pf-cream:       #f7f4ef;
-$pf-text:        #2c2c2c;
-$pf-muted:       #666;
+// Paleta Andes
+$pf-dark:        #2a1a0d;   // café oscuro profundo → hero bg
+$pf-teal:        #8ab4a6;   // verde salvia
+$pf-teal-light:  #eaf3f0;
+$pf-amber:       #be8c22;   // ámbar oscuro
+$pf-amber-light: #f7edcf;
+$pf-green:       #b94d3a;   // tierra / rojo andino
+$pf-green-light: #f5e3df;
+$pf-indigo:      #7a5228;   // café cálido
+$pf-indigo-light:#f0e6d8;
+$pf-cream:       #f5ede0;   // arena / melocotón
+$pf-text:        #2c1f14;   // café muy oscuro
+$pf-muted:       #7a6040;
 
 .portfolio-page {
   background: $pf-cream;
@@ -143,7 +144,7 @@ $pf-muted:       #666;
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, $pf-teal, $pf-amber, $pf-green);
+    background: linear-gradient(90deg, $pf-green, $pf-amber, #cfaa2a, $pf-teal);
   }
 
   &__inner {
@@ -317,7 +318,7 @@ $pf-muted:       #666;
   &__link {
     font-size: 1.2rem;
     font-weight: 600;
-    color: $pf-teal;
+    color: $pf-indigo;
     text-decoration: none;
     margin-top: 0.2rem;
 
