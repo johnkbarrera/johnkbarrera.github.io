@@ -9,8 +9,9 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #fff;
-  border-bottom: 1px solid #e8e8e8;
+  background: #0d0d0d;
+  border-bottom: 1px solid #00ff9f44;
+  box-shadow: 0 0 18px #00ff9f22;
 
   &__inner {
     max-width: 1100px;
@@ -26,10 +27,11 @@
     font-size: 1.7rem;
     font-weight: 700;
     letter-spacing: 0.35em;
-    color: #222;
+    color: #00ff9f;
     text-transform: uppercase;
     text-decoration: none;
     font-family: 'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+    text-shadow: 0 0 8px #00ff9f99, 0 0 20px #00ff9f44;
   }
 
   &__links {
@@ -37,7 +39,7 @@
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 2rem;
+    gap: 4rem;
   }
 
   &__link {
@@ -45,14 +47,15 @@
     font-weight: 500;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #555;
+    color: #a0a0a0;
     text-decoration: none;
-    transition: color 0.15s;
+    transition: color 0.2s, text-shadow 0.2s;
     cursor: pointer;
     font-family: 'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
 
     &:hover {
-      color: #111;
+      color: #00ff9f;
+      text-shadow: 0 0 8px #00ff9f88;
     }
   }
 
@@ -71,8 +74,8 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(0);
-    background: #fff;
-    border: 1px solid #e8e8e8;
+    background: #0d0d0d;
+    border: 1px solid #00ff9f44;
     border-radius: 4px;
     list-style: none;
     margin: 0;
@@ -95,14 +98,16 @@
     font-family: 'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
 
     &:hover {
-      color: #111;
-      background: #f5f5f5;
+      color: #00ff9f;
+      background: #00ff9f11;
+      text-shadow: 0 0 6px #00ff9f66;
     }
   }
 
   &__link--active {
-    color: #111;
-    border-bottom: 2px solid #be8c22;
+    color: #00ff9f;
+    text-shadow: 0 0 8px #00ff9f88;
+    border-bottom: 2px solid #00ff9f;
     padding-bottom: 2px;
   }
 }
@@ -184,18 +189,18 @@ $pf-muted:       #7a6040;
     gap: 0.5rem;
     margin-top: 1.75rem;
     padding: 0.55rem 1.1rem;
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 2px solid $pf-green;
     border-radius: 6px;
     font-size: 1.6rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.8);
+    color: $pf-green;
+    background: rgba(#b94d3a, 0.12);
     text-decoration: none;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    transition: background 0.15s, color 0.15s;
 
     &:hover {
-      background: rgba(255,255,255,0.1);
+      background: $pf-green;
       color: #fff;
-      border-color: rgba(255,255,255,0.45);
     }
   }
 }
