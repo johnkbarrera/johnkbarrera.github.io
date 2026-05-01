@@ -148,7 +148,7 @@ $pf-muted:       #666;
   }
 
   &__label {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -157,7 +157,7 @@ $pf-muted:       #666;
   }
 
   &__title {
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-size: clamp(3rem, 7vw, 5rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     margin: 0 0 1rem;
@@ -166,9 +166,9 @@ $pf-muted:       #666;
   }
 
   &__subtitle {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: rgba(255,255,255,0.65);
-    max-width: 600px;
+    max-width: 620px;
     margin: 0;
     line-height: 1.7;
   }
@@ -194,7 +194,7 @@ $pf-muted:       #666;
   }
 
   &__title {
-    font-size: 1.35rem;
+    font-size: 1.6rem;
     font-weight: 600;
     color: $pf-text;
     margin: 0;
@@ -202,10 +202,10 @@ $pf-muted:       #666;
   }
 
   &__intro {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: $pf-muted;
     margin: -0.5rem 0 1.25rem;
-    line-height: 1.65;
+    line-height: 1.7;
   }
 
   &__intro-link {
@@ -218,11 +218,11 @@ $pf-muted:       #666;
 
 // Badge (category label left of title)
 .pf-badge {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 4px 11px;
+  padding: 5px 13px;
   border-radius: 99px;
 
   &--research { background: $pf-teal-light;   color: $pf-teal; }
@@ -268,7 +268,7 @@ $pf-muted:       #666;
   }
 
   &__title {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 600;
     margin: 0;
     color: $pf-text;
@@ -276,9 +276,9 @@ $pf-muted:       #666;
   }
 
   &__desc {
-    font-size: 0.97rem;
+    font-size: 1.05rem;
     color: $pf-muted;
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
   }
 
@@ -290,7 +290,7 @@ $pf-muted:       #666;
   }
 
   &__link {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     color: $pf-teal;
     text-decoration: none;
@@ -302,7 +302,7 @@ $pf-muted:       #666;
 
 // Tag (date/org above title)
 .pf-tag {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -315,11 +315,11 @@ $pf-muted:       #666;
 
 // Chip (tech stack pills)
 .pf-chip {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 500;
   background: $pf-cream;
   color: $pf-muted;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 99px;
   border: 1px solid #e0dcd6;
 }
