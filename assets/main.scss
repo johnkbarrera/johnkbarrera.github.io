@@ -115,28 +115,28 @@
 // ─── Portfolio ────────────────────────────────────────────────────────────────
 
 // Paleta Andes
-$pf-dark:        #2a1a0d;   // café oscuro profundo → hero bg
-$pf-teal:        #8ab4a6;   // verde salvia
-$pf-teal-light:  #eaf3f0;
-$pf-amber:       #be8c22;   // ámbar oscuro
-$pf-amber-light: #f7edcf;
-$pf-green:       #b94d3a;   // tierra / rojo andino
-$pf-green-light: #f5e3df;
-$pf-indigo:      #7a5228;   // café cálido
-$pf-indigo-light:#f0e6d8;
-$pf-cream:       #f5ede0;   // arena / melocotón
-$pf-text:        #2c1f14;   // café muy oscuro
-$pf-muted:       #7a6040;
+$pf-cafe-oscuro:   #2a1a0d;   // café oscuro profundo → hero bg
+$pf-salvia:        #8ab4a6;   // verde salvia
+$pf-salvia-light:  #eaf3f0;
+$pf-ambar:         #be8c22;   // ámbar oscuro
+$pf-ambar-light:   #f7edcf;
+$pf-tierra:        #b94d3a;   // tierra / rojo andino
+$pf-tierra-light:  #f5e3df;
+$pf-cafe:          #7a5228;   // café cálido
+$pf-cafe-light:    #f0e6d8;
+$pf-arena:         #f5ede0;   // arena / melocotón
+$pf-texto:         #2c1f14;   // café muy oscuro
+$pf-muted:         #7a6040;
 
 .portfolio-page {
-  background: $pf-cream;
-  color: $pf-text;
+  background: $pf-arena;
+  color: $pf-texto;
   font-family: inherit;
 }
 
 // Hero
 .pf-hero {
-  background: $pf-amber;
+  background: $pf-ambar;
   color: #fff;
   padding: 5rem 2rem 4rem;
   position: relative;
@@ -149,7 +149,7 @@ $pf-muted:       #7a6040;
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, $pf-green, $pf-amber, #cfaa2a, $pf-teal);
+    background: linear-gradient(90deg, $pf-tierra, $pf-ambar, #cfaa2a, $pf-salvia);
   }
 
   &__inner {
@@ -189,17 +189,17 @@ $pf-muted:       #7a6040;
     gap: 0.5rem;
     margin-top: 1.75rem;
     padding: 0.55rem 1.1rem;
-    border: 2px solid $pf-green;
+    border: 2px solid $pf-tierra;
     border-radius: 6px;
     font-size: 1.6rem;
     font-weight: 500;
-    color: $pf-green;
+    color: $pf-tierra;
     background: rgba(#b94d3a, 0.12);
     text-decoration: none;
     transition: background 0.15s, color 0.15s;
 
     &:hover {
-      background: $pf-green;
+      background: $pf-tierra;
       color: #fff;
     }
   }
@@ -227,7 +227,7 @@ $pf-muted:       #7a6040;
   &__title {
     font-size: 1.92rem;
     font-weight: 600;
-    color: $pf-text;
+    color: $pf-texto;
     margin: 0;
     letter-spacing: -0.01em;
   }
@@ -240,7 +240,7 @@ $pf-muted:       #7a6040;
   }
 
   &__intro-link {
-    color: $pf-indigo;
+    color: $pf-cafe;
     font-weight: 600;
     text-decoration: none;
     &:hover { text-decoration: underline; }
@@ -256,10 +256,10 @@ $pf-muted:       #7a6040;
   padding: 5px 13px;
   border-radius: 99px;
 
-  &--research { background: $pf-teal-light;   color: $pf-teal; }
-  &--data     { background: $pf-amber-light;  color: darken($pf-amber, 15%); }
-  &--social   { background: $pf-green-light;  color: $pf-green; }
-  &--open     { background: $pf-indigo-light; color: $pf-indigo; }
+  &--research { background: $pf-salvia-light;  color: $pf-salvia; }
+  &--data     { background: $pf-ambar-light;   color: darken($pf-ambar, 15%); }
+  &--social   { background: $pf-tierra-light;  color: $pf-tierra; }
+  &--open     { background: $pf-cafe-light;    color: $pf-cafe; }
 }
 
 // Grid
@@ -285,10 +285,10 @@ $pf-muted:       #7a6040;
   &__top {
     height: 5px;
 
-    &--research { background: linear-gradient(90deg, $pf-teal,   lighten($pf-teal, 15%)); }
-    &--data     { background: linear-gradient(90deg, $pf-amber,  lighten($pf-amber, 10%)); }
-    &--social   { background: linear-gradient(90deg, $pf-green,  lighten($pf-green, 15%)); }
-    &--open     { background: linear-gradient(90deg, $pf-indigo, lighten($pf-indigo, 15%)); }
+    &--research { background: linear-gradient(90deg, $pf-salvia,  lighten($pf-salvia, 15%)); }
+    &--data     { background: linear-gradient(90deg, $pf-ambar,   lighten($pf-ambar, 10%)); }
+    &--social   { background: linear-gradient(90deg, $pf-tierra,  lighten($pf-tierra, 15%)); }
+    &--open     { background: linear-gradient(90deg, $pf-cafe,    lighten($pf-cafe, 15%)); }
   }
 
   &__body {
@@ -302,7 +302,7 @@ $pf-muted:       #7a6040;
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0;
-    color: $pf-text;
+    color: $pf-texto;
     line-height: 1.3;
   }
 
@@ -323,7 +323,7 @@ $pf-muted:       #7a6040;
   &__link {
     font-size: 1.2rem;
     font-weight: 600;
-    color: $pf-indigo;
+    color: $pf-cafe;
     text-decoration: none;
     margin-top: 0.2rem;
 
@@ -338,17 +338,17 @@ $pf-muted:       #7a6040;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 
-  &--research { color: $pf-teal; }
-  &--data     { color: darken($pf-amber, 15%); }
-  &--social   { color: $pf-green; }
-  &--open     { color: $pf-indigo; }
+  &--research { color: $pf-salvia; }
+  &--data     { color: darken($pf-ambar, 15%); }
+  &--social   { color: $pf-tierra; }
+  &--open     { color: $pf-cafe; }
 }
 
 // Chip (tech stack pills)
 .pf-chip {
   font-size: 1.08rem;
   font-weight: 500;
-  background: $pf-cream;
+  background: $pf-arena;
   color: $pf-muted;
   padding: 4px 12px;
   border-radius: 99px;
