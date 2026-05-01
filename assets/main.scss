@@ -216,7 +216,7 @@ $pf-muted:       #666;
   }
 
   &__title {
-    font-size: 1.6rem;
+    font-size: 1.92rem;
     font-weight: 600;
     color: $pf-text;
     margin: 0;
@@ -224,7 +224,7 @@ $pf-muted:       #666;
   }
 
   &__intro {
-    font-size: 1.1rem;
+    font-size: 1.32rem;
     color: $pf-muted;
     margin: -0.5rem 0 1.25rem;
     line-height: 1.7;
@@ -240,7 +240,7 @@ $pf-muted:       #666;
 
 // Badge (category label left of title)
 .pf-badge {
-  font-size: 0.85rem;
+  font-size: 1.02rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -290,7 +290,7 @@ $pf-muted:       #666;
   }
 
   &__title {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
     margin: 0;
     color: $pf-text;
@@ -298,7 +298,7 @@ $pf-muted:       #666;
   }
 
   &__desc {
-    font-size: 1.05rem;
+    font-size: 1.26rem;
     color: $pf-muted;
     line-height: 1.65;
     margin: 0;
@@ -312,7 +312,7 @@ $pf-muted:       #666;
   }
 
   &__link {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: $pf-teal;
     text-decoration: none;
@@ -324,7 +324,7 @@ $pf-muted:       #666;
 
 // Tag (date/org above title)
 .pf-tag {
-  font-size: 0.9rem;
+  font-size: 1.08rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -337,7 +337,7 @@ $pf-muted:       #666;
 
 // Chip (tech stack pills)
 .pf-chip {
-  font-size: 0.9rem;
+  font-size: 1.08rem;
   font-weight: 500;
   background: $pf-cream;
   color: $pf-muted;
