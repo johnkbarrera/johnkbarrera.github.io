@@ -112,6 +112,8 @@ $pf-amber:       #e8a838;
 $pf-amber-light: #fdf3dc;
 $pf-green:       #2d8a5e;
 $pf-green-light: #e4f5ee;
+$pf-indigo:      #4a43a0;
+$pf-indigo-light:#eeecf8;
 $pf-cream:       #f7f4ef;
 $pf-text:        #2c2c2c;
 $pf-muted:       #666;
@@ -198,6 +200,20 @@ $pf-muted:       #666;
     margin: 0;
     letter-spacing: -0.01em;
   }
+
+  &__intro {
+    font-size: 0.88rem;
+    color: $pf-muted;
+    margin: -0.5rem 0 1.25rem;
+    line-height: 1.6;
+  }
+
+  &__intro-link {
+    color: $pf-indigo;
+    font-weight: 600;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
 }
 
 // Badge (category label left of title)
@@ -209,9 +225,10 @@ $pf-muted:       #666;
   padding: 3px 9px;
   border-radius: 99px;
 
-  &--research { background: $pf-teal-light;  color: $pf-teal; }
-  &--data     { background: $pf-amber-light; color: darken($pf-amber, 15%); }
-  &--social   { background: $pf-green-light; color: $pf-green; }
+  &--research { background: $pf-teal-light;   color: $pf-teal; }
+  &--data     { background: $pf-amber-light;  color: darken($pf-amber, 15%); }
+  &--social   { background: $pf-green-light;  color: $pf-green; }
+  &--open     { background: $pf-indigo-light; color: $pf-indigo; }
 }
 
 // Grid
@@ -237,9 +254,10 @@ $pf-muted:       #666;
   &__top {
     height: 5px;
 
-    &--research { background: linear-gradient(90deg, $pf-teal, lighten($pf-teal, 15%)); }
-    &--data     { background: linear-gradient(90deg, $pf-amber, lighten($pf-amber, 10%)); }
-    &--social   { background: linear-gradient(90deg, $pf-green, lighten($pf-green, 15%)); }
+    &--research { background: linear-gradient(90deg, $pf-teal,   lighten($pf-teal, 15%)); }
+    &--data     { background: linear-gradient(90deg, $pf-amber,  lighten($pf-amber, 10%)); }
+    &--social   { background: linear-gradient(90deg, $pf-green,  lighten($pf-green, 15%)); }
+    &--open     { background: linear-gradient(90deg, $pf-indigo, lighten($pf-indigo, 15%)); }
   }
 
   &__body {
@@ -292,6 +310,7 @@ $pf-muted:       #666;
   &--research { color: $pf-teal; }
   &--data     { color: darken($pf-amber, 15%); }
   &--social   { color: $pf-green; }
+  &--open     { color: $pf-indigo; }
 }
 
 // Chip (tech stack pills)
