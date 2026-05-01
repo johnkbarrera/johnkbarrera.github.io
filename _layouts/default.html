@@ -5,21 +5,7 @@
 
 <body class="{% if site.darkmode == true and site.darkmode != 'never' %}dark{% endif %}">
 
-  <nav class="site-nav">
-    <div class="site-nav__inner">
-      <a href="/" class="site-nav__brand">JKBC</a>
-      <ul class="site-nav__links">
-        <li class="site-nav__item--dropdown">
-          <span class="site-nav__link">CV</span>
-          <ul class="site-nav__dropdown">
-            <li><a href="/docs/cv/johnbarrera_schoolar_es.pdf" target="_blank" class="site-nav__dropdown-link">Español</a></li>
-            <li><a href="/docs/cv/johnbarrera_schoolar_en.pdf" target="_blank" class="site-nav__dropdown-link">English</a></li>
-          </ul>
-        </li>
-        <li><a href="/portfolio" class="site-nav__link">Portfolio</a></li>
-      </ul>
-    </div>
-  </nav>
+  {%- include nav.html -%}
 
   {%- include header.html -%}
 
