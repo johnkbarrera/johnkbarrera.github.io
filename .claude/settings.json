@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git -C /Users/jkn/Documents/PersonalDoc/johnkbarrera.github.io log --oneline -6)",
+      "Bash(git -C /Users/jkn/Documents/PersonalDoc/johnkbarrera.github.io reset --hard HEAD~3)",
+      "Bash(git -C /Users/jkn/Documents/PersonalDoc/johnkbarrera.github.io log --oneline -4)",
+      "Bash(git -C /Users/jkn/Documents/PersonalDoc/johnkbarrera.github.io reset --hard HEAD~1)"
+    ]
+  }
+}
