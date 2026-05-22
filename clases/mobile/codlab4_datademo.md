@@ -122,10 +122,11 @@ Click en **"Sync Now"** (banner amarillo en la parte superior) y espera a que te
 
 ## SECCIÓN 3 — Configurar el `AndroidManifest.xml`
 
-Abre `app/src/main/AndroidManifest.xml`. Vamos a hacer dos cambios:
+Abre `app/src/main/AndroidManifest.xml`. Vamos a hacer tres cambios:
 
 1. Declarar los **permisos** necesarios para acceder a los periféricos.
-2. Registrar el **Foreground Service** y su tipo.
+2. Declarar las **características de hardware** (`<uses-feature>`) que la app usa pero **no** requiere obligatoriamente.
+3. Registrar el **Foreground Service** y su tipo.
 
 Reemplaza el contenido por:
 
@@ -156,6 +157,33 @@ Reemplaza el contenido por:
     <!-- ── Conectividad de red para HTTP POST ── -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- ── Declaración explícita de hardware ──
+         Indica a Google Play y a Lint que la app USA estos componentes
+         pero NO los REQUIERE para funcionar (required="false"). Esto
+         maximiza el alcance: tablets sin cámara, Chromebooks sin GPS y
+         emuladores limitados podrán instalar la app sin filtros. -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -194,9 +222,74 @@ Reemplaza el contenido por:
 | `POST_NOTIFICATIONS` | Obligatorio en Android 13+ para mostrar cualquier notificación, incluida la del Foreground Service. |
 | `usesCleartextTraffic="true"` | Permite tráfico HTTP sin TLS hacia tu endpoint de pruebas (por ejemplo `http://192.168.x.x`). En producción se omite. |
 
+### Sobre los `<uses-feature>` y el warning de Lint
+
+Cuando declaras un permiso como `CAMERA`, `RECORD_AUDIO` o `ACCESS_FINE_LOCATION`, Android Studio (vía Lint) te muestra un warning del estilo:
+
+> *Permission exists without corresponding hardware `<uses-feature>` tag.*
+
+No es un error de compilación: la app compila igual. El warning te advierte que declaraste un permiso peligroso sin decir explícitamente si el hardware es obligatorio u opcional, y por defecto Android asume que **es obligatorio**. Esto tiene un efecto colateral importante en Google Play:
+
+- **Tablets sin cámara** → no pueden ver tu app en la tienda.
+- **Chromebooks sin GPS** → filtrados.
+- **Dispositivos sin micrófono** → bloqueados.
+
+La etiqueta `<uses-feature android:name="..." android:required="false" />` le dice al sistema: "*Mi app usa este hardware si está disponible, pero puede funcionar sin él*". Es una declaración de **inclusión**, no de exclusión.
+
+| Atributo | Efecto |
+|---|---|
+| `required="true"` | La app no funciona sin este hardware. Play Store **filtra** los dispositivos que no lo tengan. |
+| `required="false"` | La app prefiere este hardware pero se degrada elegantemente sin él. Permite instalación en **todos** los dispositivos. |
+
+Para nuestro laboratorio **DataDemo** la decisión correcta es siempre `required="false"` porque la app tiene 5 pestañas y solo 2 dependen estrictamente del hardware multimedia. Un usuario sin cámara igual puede usar las pestañas de Sensores, Sincronización y Alertas.
+
+> **En producción real:** si tu app **es** una app de cámara (tipo Instagram), pondrías `required="true"` en `android.hardware.camera` para que Play Store filtre dispositivos incompatibles automáticamente.
+
+Como ahora declaramos `required="false"`, conviene verificar en runtime que el hardware exista antes de usarlo. Ejemplo dentro de `CamaraScreen.kt`:
+
+```kotlin
+val tieneCamara = context.packageManager
+    .hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)
+
+if (tieneCamara) {
+    // mostrar CameraX
+} else {
+    Text("Este dispositivo no tiene cámara disponible.")
+}
+```
+
 ### Sobre `foregroundServiceType="location"`
 
 Es un estándar de seguridad de las APIs modernas de Android. Si el sistema operativo detecta que un servicio captura ubicaciones y el manifiesto **no** declara explícitamente el tipo como `"location"`, el kernel termina la aplicación de inmediato por motivos de privacidad.
+
+### ¿Por qué `.services.TrackingService` aparece subrayado en rojo?
+
+Al guardar el manifest verás que `android:name=".services.TrackingService"` queda **subrayado en rojo** con el mensaje:
+
+> *Class referenced in the manifest, `com.illareklab.data_demo.services.TrackingService`, was not found in the project or the libraries.*
+
+Esto es **normal y esperado**: el archivo `TrackingService.kt` aún no existe (lo crearemos en la Sección 6). Android Studio resuelve referencias del manifest en tiempo de edición y avisa cuando la clase no existe todavía.
+
+**No es un error de compilación.** El subrayado **desaparece automáticamente** apenas guardes el archivo `TrackingService.kt` en la Sección 6.
+
+Si el subrayado te molesta visualmente, puedes adelantarte y crear el archivo como stub vacío:
+
+1. Crea el package `services` (lo veremos en la siguiente sección de todas formas).
+2. Crea `TrackingService.kt` con este contenido temporal:
+
+```kotlin
+package com.illareklab.data_demo.services
+
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
+
+class TrackingService : Service() {
+    override fun onBind(intent: Intent?): IBinder? = null
+}
+```
+
+3. Reemplazarás todo el contenido en la Sección 6 con la implementación real.
 
 ---
 
@@ -1522,6 +1615,8 @@ Verás líneas con el formato:
 | La notificación del Foreground Service no aparece en Android 13+ | Falta el permiso `POST_NOTIFICATIONS`. | Solicitarlo en runtime junto con los de ubicación (ya incluido en `SensoresScreen`). |
 | `WorkManager` no dispara la notificación | El dispositivo está en **modo ahorro de batería** extremo. | Quitar la app de la lista de "optimización de batería" en Configuración → Apps → DataDemo → Batería. |
 | `popUpTo` no limpia el login | Falta `inclusive = true`. | Asegurarse que `popUpTo("login") { inclusive = true }` esté presente en el `navigate`. |
+| Warning `Permission exists without corresponding hardware <uses-feature> tag` subrayado en rojo/amarillo | Lint detecta un permiso peligroso sin su declaración de hardware correspondiente. | Agregar el bloque de `<uses-feature android:required="false" />` después de los `<uses-permission>` (ver Sección 3). El warning es informativo, **no impide compilar**, pero sí filtra dispositivos en Google Play. |
+| `.services.TrackingService` subrayado en rojo en el manifest | El archivo `TrackingService.kt` todavía no existe (se crea en Sección 6). | Avanzar con la guía hasta la Sección 6: al guardar el archivo, el subrayado desaparece. O crear primero un stub vacío (ver final de Sección 3). |
 | El login responde con "Credenciales incorrectas" usando `admin/admin` | El `SALT_DEMO` o el `HASH_PASSWORD_ADMIN` en `LoginScreen.kt` no coinciden con los valores precomputados. | Verificar que el salt sea exactamente `byteArrayOf(0x44, 0x61, 0x74, 0x61, 0x44, 0x65, 0x6d, 0x6f, 0x53, 0x61, 0x6c, 0x74, 0x30, 0x31, 0x32, 0x33)` y el hash exactamente `70f5d2c5f1b01c28f3750bfd7d6a5b9e2fd1e80b99286319bfd32626e29f40be`. |
 | El botón "Ingresar" congela la app por 1-2 segundos | Se está ejecutando `PasswordHasher.hash(...)` en el hilo principal. | Envolver la llamada en `withContext(Dispatchers.Default) { ... }` como muestra el código de Sección 9.4. |
 | `NoSuchAlgorithmException: PBKDF2WithHmacSHA256` | Equipo con una versión muy antigua de Android (pre-API 26) o emulador roto. | Verificar `minSdk = 26`. El algoritmo está disponible nativamente desde Android 8.0. |
@@ -1541,6 +1636,7 @@ Verás líneas con el formato:
 - [ ] Dependencia `accompanist-permissions:0.34.0` agregada.
 - [ ] Permisos `ACCESS_FINE_LOCATION`, `ACCESS_BACKGROUND_LOCATION`, `POST_NOTIFICATIONS`, `INTERNET` declarados en el manifest.
 - [ ] Service registrado con `foregroundServiceType="location"`.
+- [ ] Bloque de `<uses-feature>` con `required="false"` agregado para `camera`, `microphone`, `location.gps`, `bluetooth_le` y `wifi`.
 - [ ] Atributo `usesCleartextTraffic="true"` agregado al `<application>` (solo si se usa HTTP).
 - [ ] Packages `data`, `services`, `workers`, `ui`, `ui.screens` creados.
 - [ ] `NetworkManager.kt` con `LogMetrica`, `obtenerDatosLocales`, `enviarRegistroIndividual`, `actualizarArchivoLocal`.
