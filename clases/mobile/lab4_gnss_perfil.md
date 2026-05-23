@@ -302,6 +302,36 @@ class GpsViewModel(private val gpsRepository: GpsRepository) : ViewModel() {
 ## 8. `GpsCaptureService` — Loop con coroutines
 
 ```kotlin
+package com.illareklab.demodata.services
+
+import android.annotation.SuppressLint
+import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.Service
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.LocationManager
+import android.os.Build
+import android.os.IBinder
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import com.google.android.gms.location.*
+import com.illareklab.demodata.DemoDataApp
+import com.illareklab.demodata.data.local.entity.GpsGoogleEntity
+import com.illareklab.demodata.data.local.entity.GpsSensorsEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withTimeoutOrNull
+import kotlin.coroutines.resume
+
 class GpsCaptureService : Service() {
 
     companion object {
