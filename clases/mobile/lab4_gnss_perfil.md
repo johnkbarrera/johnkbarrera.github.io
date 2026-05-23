@@ -44,6 +44,26 @@ SessionManager (DataStore)
 
 Estas son las dependencias necesarias para el Lab 4. La mayoría ya están en el proyecto; se listan aquí para referencia.
 
+### Archivo `gradle/libs.versions.toml` — entradas relevantes
+
+```toml
+[versions]
+kotlin       = "2.2.10"
+ksp          = "2.2.10-2.0.2"   # debe coincidir exactamente con la versión de Kotlin
+androidxRoom = "2.7.0-alpha11"
+
+[libraries]
+androidx-room-runtime  = { group = "androidx.room", name = "room-runtime",  version.ref = "androidxRoom" }
+androidx-room-ktx      = { group = "androidx.room", name = "room-ktx",      version.ref = "androidxRoom" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler",  version.ref = "androidxRoom" }
+
+[plugins]
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+```
+
+> **Nota:** Parche temporal, en `gradle.properties` añadir la fila `android.disallowKotlinSourceSets=false`.
+
+
 ```kotlin
 plugins {
     alias(libs.plugins.android.application)
@@ -87,22 +107,6 @@ dependencies {
 }
 ```
 
-### Archivo `gradle/libs.versions.toml` — entradas relevantes
-
-```toml
-[versions]
-kotlin       = "2.2.10"
-ksp          = "2.2.10-2.0.2"   # debe coincidir exactamente con la versión de Kotlin
-androidxRoom = "2.7.0-alpha11"
-
-[libraries]
-androidx-room-runtime  = { group = "androidx.room", name = "room-runtime",  version.ref = "androidxRoom" }
-androidx-room-ktx      = { group = "androidx.room", name = "room-ktx",      version.ref = "androidxRoom" }
-androidx-room-compiler = { group = "androidx.room", name = "room-compiler",  version.ref = "androidxRoom" }
-
-[plugins]
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-```
 
 > **Nota:** `room-compiler` va con `ksp(...)` en las dependencias, no con `implementation(...)`. Si se pone con `implementation` Room no genera el código y el proyecto no compila.
 
