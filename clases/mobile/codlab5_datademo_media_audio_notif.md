@@ -2644,3 +2644,5 @@ class MainActivity : ComponentActivity() {
 - [ ] `SessionViewModel` tiene `Factory` y función `login(username, password, onResult)`
 - [ ] `Navigation` muestra `LoginScreen` cuando `isLoggedIn == false` y `MainScaffold` cuando es `true`
 - [ ] La app compila, hace login con `jkn/jkn`, captura foto/video/audio y los muestra en historial
+
+
