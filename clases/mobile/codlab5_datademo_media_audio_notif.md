@@ -79,34 +79,42 @@ app/src/main/
 
 ### Diagrama de flujo de datos
 
-```
-DemoDataApp
-  ├── DemoDataDatabase (fleet.db, version 3)
-  │     ├── gps_google, gps_sensors   (Lab 4)
-  │     ├── media                     (Lab 5)
-  │     └── audio                     (Lab 5)
-  ├── FileStorageManager
-  │     ├── filesDir/photos/
-  │     ├── filesDir/videos/
-  │     └── filesDir/audios/
-  ├── GpsRepository   (Lab 4)
-  ├── MediaRepository ──→ MediaViewModel ──→ MediaScreen
-  ├── AudioRepository ──→ AudioViewModel ──→ AudioScreen
-  └── SessionManager  ──→ SessionViewModel ──→ LoginScreen / Navigation
+```mermaid
+flowchart TD
+    APP[DemoDataApp]
+    DB[(DemoDataDatabase\nfleet.db v3)]
+    FS[FileStorageManager]
 
-GpsCaptureService     (Lab 4)
+    GR[GpsRepository\nLab 4]
+    MR[MediaRepository]
+    AR[AudioRepository]
+    SM[SessionManager]
 
-DelayedNotificationWorker (WorkManager)
-  └── NotificationsScreen ──→ WorkManager.enqueue(delay=10s) ──→ Worker.doWork()
+    GPSDB[gps_google · gps_sensors\nLab 4]
+    MDB[media\nLab 5]
+    ADB[audio\nLab 5]
 
-SyncViewModel
-  └── combine(gpsGoogle, gpsSensors, photos, videos, audios) ──→ SyncCounts
-        └── SyncScreen
+    MVM[MediaViewModel] --> MSCR[MediaScreen]
+    AVM[AudioViewModel] --> ASCR[AudioScreen]
+    SVM[SessionViewModel] --> NAV[Navigation\nLoginScreen]
 
-ProfileScreen.MyActivityScreen
-  └── combine(googlePoints, sensorsPoints, allMedia, allAudios)
-        └── sealed class ActivityItem ──→ LazyColumn + ActivityDetailDialog
-                                             └── FileProvider ──→ Intent.ACTION_VIEW
+    WM[WorkManager\nenqueue delay=10s]
+    DNW[DelayedNotificationWorker\ndoWork]
+    NOTSCR[NotificationsScreen] --> WM --> DNW
+
+    SYNC[SyncViewModel\ncombine 5 flows → SyncCounts] --> SYNCSCR[SyncScreen]
+
+    PROF[ProfileScreen.MyActivityScreen\ncombine 4 flows]
+    AI[sealed class ActivityItem\nLazyColumn + ActivityDetailDialog]
+    FP[FileProvider\nIntent.ACTION_VIEW]
+
+    APP --> DB & FS & GR & MR & AR & SM
+    DB --> GPSDB & MDB & ADB
+    MR --> MVM
+    AR --> AVM
+    SM --> SVM
+    GR & MR & AR --> SYNC
+    MR & AR & GR --> PROF --> AI --> FP
 ```
 
 ---
@@ -1532,18 +1540,19 @@ private fun MediaItemRow(media: MediaEntity, onDelete: () -> Unit) {
 
 ### Flujo de captura con `ActivityResultContracts`
 
-```
-tap "Foto"
-  → vm.newPhotoFile()         ← crea File vacío en filesDir/photos/
-  → FileProvider.getUriForFile() ← convierte la ruta privada en content://URI
-  → photoLauncher.launch(uri) ← abre la cámara del sistema
-       │
-  [usuario toma la foto]
-       │
-  photoLauncher callback(success = true)
-  → vm.onPhotoCaptured(path, w, h)
-      → mediaRepository.registerPhoto()
-          → Room INSERT ← Flow emite → LazyColumn recompone
+```mermaid
+flowchart TD
+    TAP[tap Foto]
+    NPF[vm.newPhotoFile\ncrea File vacío en filesDir/photos/]
+    URI[FileProvider.getUriForFile\nconvierte ruta privada en content://URI]
+    LAUNCH[photoLauncher.launch uri\nabre la cámara del sistema]
+    USER[usuario toma la foto]
+    CB[callback success = true]
+    OPC[vm.onPhotoCaptured path w h]
+    REG[mediaRepository.registerPhoto]
+    INS[(Room INSERT\nFlow emite → LazyColumn recompone)]
+
+    TAP --> NPF --> URI --> LAUNCH --> USER --> CB --> OPC --> REG --> INS
 ```
 
 **`pendingFile`:** la URI pasada al launcher solo apunta al archivo destino. Cuando el callback llega, hay que verificar que `file.exists()` porque el usuario puede cancelar sin tomar la foto, en cuyo caso el archivo permanece vacío y debe eliminarse.
@@ -2516,69 +2525,72 @@ class MainActivity : ComponentActivity() {
 
 ### Ciclo de captura multimedia
 
-```
-[MediaScreen] tap "Foto"
-  → vm.newPhotoFile()
-      → FileStorageManager.newPhotoFile()
-          → File("filesDir/photos/photo_TIMESTAMP.jpg")
-  → FileProvider.getUriForFile() → content://URI
-  → photoLauncher.launch(uri)  ← cámara del sistema escribe en el archivo
-  → callback(success=true)
-      → vm.onPhotoCaptured(path, w, h)
-          → mediaRepository.registerPhoto()
-              → mediaDao.insert(MediaEntity)
-  → Room Flow emite → mediaList StateFlow → LazyColumn recompone
+```mermaid
+flowchart TD
+    TAP[MediaScreen tap Foto]
+    NPF[vm.newPhotoFile\nFileStorageManager.newPhotoFile\nFile filesDir/photos/photo_TIMESTAMP.jpg]
+    URI[FileProvider.getUriForFile\ncontent://URI]
+    CAM[photoLauncher.launch uri\ncámara del sistema escribe en el archivo]
+    CB[callback success=true]
+    OPC[vm.onPhotoCaptured path w h\nmediaRepository.registerPhoto]
+    INS[(mediaDao.insert MediaEntity)]
+    FLOW[Room Flow emite\nmediaList StateFlow → LazyColumn recompone]
+
+    TAP --> NPF --> URI --> CAM --> CB --> OPC --> INS --> FLOW
 ```
 
 ### Ciclo de grabación de audio
 
-```
-[AudioScreen] tap "Iniciar grabación"
-  → vm.startRecording()
-      → FileStorageManager.newAudioFile()
-      → MediaRecorder.prepare() + start()
-      → timerJob: delay(1s) → _elapsedSeconds++  ← cada segundo
-  → [usuario toca "Detener"]
-  → vm.stopRecording()
-      → MediaRecorder.stop() + release()
-      → audioRepository.registerAudio(path, durationMs)
-          → audioDao.insert(AudioEntity)
-  → Room Flow emite → audios StateFlow → LazyColumn recompone
+```mermaid
+flowchart TD
+    TAP[AudioScreen tap Iniciar grabación]
+    SR[vm.startRecording\nFileStorageManager.newAudioFile]
+    REC[MediaRecorder.prepare + start]
+    TIMER[timerJob\ndelay 1s → _elapsedSeconds++\ncada segundo]
+    STOP[usuario toca Detener]
+    STOPR[vm.stopRecording\nMediaRecorder.stop + release]
+    REG[audioRepository.registerAudio path durationMs\naudioDao.insert AudioEntity]
+    FLOW[Room Flow emite\naudios StateFlow → LazyColumn recompone]
+
+    TAP --> SR --> REC --> TIMER
+    TIMER -.->|loop por segundo| TIMER
+    TIMER -->|usuario detiene| STOP --> STOPR --> REG --> FLOW
 ```
 
 ### Ciclo de notificación diferida
 
-```
-[NotificationsScreen] tap "Programar"
-  → OneTimeWorkRequestBuilder<DelayedNotificationWorker>()
-       .setInitialDelay(10, TimeUnit.SECONDS)
-       .setInputData(workDataOf("input_message" to mensaje))
-       .build()
-  → WorkManager.enqueue(request)
-  → [10 segundos después, incluso con la app cerrada]
-  → DelayedNotificationWorker.doWork()
-      → NotificationManager.createNotificationChannel()
-      → NotificationCompat.Builder(...).build()
-      → manager.notify(...)  ← aparece en la barra de notificaciones
-  → Result.success()
+```mermaid
+flowchart TD
+    TAP[NotificationsScreen tap Programar]
+    BUILD[OneTimeWorkRequestBuilder\nsetInitialDelay 10 TimeUnit.SECONDS\nsetInputData input_message=mensaje]
+    ENQ[WorkManager.enqueue request\npersiste en BD interna del SO]
+    NOTE[10 segundos después\napp puede estar cerrada]
+    DW[DelayedNotificationWorker.doWork]
+    CHAN[NotificationManager.createNotificationChannel]
+    NOTIF[manager.notify\naparece en la barra de notificaciones]
+    RES[Result.success]
+
+    TAP --> BUILD --> ENQ -.->|10s después| NOTE --> DW --> CHAN --> NOTIF --> RES
 ```
 
 ### Ciclo de sesión
 
-```
-[LoginScreen] usuario="jkn", password="jkn"
-  → sessionVm.login("jkn", "jkn", onResult)
-      → if (credenciales ok) sessionManager.login("jkn")
-          → DataStore: is_logged_in=true, username="jkn"
-          → isLoggedIn Flow emite true
-          → Navigation: if(isLoggedIn) MainScaffold else LoginScreen
-          → recompone → muestra MainScaffold con 6 tabs
+```mermaid
+flowchart TD
+    LS[LoginScreen\nusuario=jkn · password=jkn]
+    LOGIN[sessionVm.login jkn jkn onResult\nsessionManager.login jkn]
+    DS[DataStore\nis_logged_in=true · username=jkn]
+    IL[isLoggedIn Flow emite true]
+    NAV[Navigation\nif isLoggedIn MainScaffold else LoginScreen]
+    MS[MainScaffold con 6 tabs]
 
-[Perfil] tap "Cerrar sesión" → confirmar
-  → sessionVm.logout()
-      → DataStore.clear() preservando dark_mode
-      → isLoggedIn Flow emite false
-      → Navigation recompone → LoginScreen
+    BTN[Perfil tap Cerrar sesión → confirmar]
+    LG[sessionVm.logout\nDataStore.clear preservando dark_mode]
+    IL2[isLoggedIn Flow emite false]
+    BACK[Navigation recompone → LoginScreen]
+
+    LS --> LOGIN --> DS --> IL --> NAV -->|true| MS
+    BTN --> LG --> IL2 --> BACK --> LS
 ```
 
 ---

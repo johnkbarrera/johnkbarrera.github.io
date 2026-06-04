@@ -54,32 +54,35 @@ app/src/main/
 
 ### Diagrama de flujo de datos
 
-```
-GpsCaptureService (Foreground Service)
-    │
-    ├── FusedLocationProvider → GpsGoogleEntity → Room (gps_google)
-    └── LocationManager chip → GpsSensorsEntity → Room (gps_sensors)
-                                    │
-                              GpsRepository
-                                    │
-                              GpsViewModel
-                              ├── googlePoints: StateFlow<List<GpsGoogleEntity>>
-                              ├── sensorsPoints: StateFlow<List<GpsSensorsEntity>>
-                              └── comparativeHistory: StateFlow<List<ComparativeGpsRecord>>
-                                    │
-                              GpsScreen
-                              └── ComparativeCaptureCard (dual-panel por instante)
+```mermaid
+flowchart TD
+    SVC[GpsCaptureService\nForeground Service]
+    FLP[FusedLocationProvider]
+    LM[LocationManager chip]
+    GGE[GpsGoogleEntity]
+    GSE[GpsSensorsEntity]
+    RG[(Room\ngps_google)]
+    RS[(Room\ngps_sensors)]
+    REPO[GpsRepository]
+    VM[GpsViewModel]
+    GS[GpsScreen]
+    CCC[ComparativeCaptureCard\ndual-panel por instante]
 
-SessionManager (DataStore)
-    └── isDarkMode: Flow<Boolean?>
-            │
-    SessionViewModel
-    └── isDarkMode: StateFlow<Boolean?>
-            │
-    ProfileScreen
-    ├── ProfileMenu       → logout con AlertDialog
-    ├── MyProfileScreen   → metadata + Switch modo noche
-    └── MyActivityScreen  → lista de actividad registrada
+    SM[SessionManager\nDataStore]
+    SVM[SessionViewModel\nisDarkMode: StateFlow]
+    PS[ProfileScreen]
+    PM[ProfileMenu\nlogout con AlertDialog]
+    MP[MyProfileScreen\nmetadata + Switch modo noche]
+    MA[MyActivityScreen\nlista de actividad]
+
+    SVC --> FLP & LM
+    FLP --> GGE --> RG
+    LM  --> GSE --> RS
+    RG & RS --> REPO --> VM
+    VM --> GS --> CCC
+
+    SM --> SVM --> PS
+    PS --> PM & MP & MA
 ```
 
 ---
@@ -247,22 +250,27 @@ class DemoDataApp : Application() {
 
 Sin `DemoDataApp`, cada componente que necesita el repositorio construye su propia cadena:
 
-```
-GpsCaptureService  →  AppDatabase.getDatabase()  →  GpsRepository(dao1, dao2)
-MainActivity       →  AppDatabase.getDatabase()  →  GpsRepository(dao1, dao2)
+```mermaid
+flowchart LR
+    SVC[GpsCaptureService] --> DB[AppDatabase.getDatabase] --> R[GpsRepository\ndao1, dao2]
+    MA[MainActivity]       --> DB
 ```
 
 `AppDatabase` usa `@Volatile + synchronized` para garantizar que solo haya una instancia, pero cada componente duplica el código de inicialización. Con `DemoDataApp`:
 
-```
-DemoDataApp (proceso único)
-    ├── database      by lazy   ← una sola BD para todo el proceso
-    ├── gpsRepository by lazy   ← un solo repositorio compartido
-    └── sessionManager by lazy  ← un solo gestor de sesión
+```mermaid
+flowchart TD
+    APP[DemoDataApp\nproceso único]
+    DB[database by lazy\nuna sola BD para todo el proceso]
+    REPO[gpsRepository by lazy\nun solo repositorio compartido]
+    SM[sessionManager by lazy\nun solo gestor de sesión]
+    SVC[GpsCaptureService]
+    MA[MainActivity]
 
-GpsCaptureService  →  (application as DemoDataApp).gpsRepository
-MainActivity       →  (application as DemoDataApp).gpsRepository
-                      (application as DemoDataApp).sessionManager
+    APP --> DB & REPO & SM
+    SVC -->|application as DemoDataApp\n.gpsRepository| REPO
+    MA  -->|application as DemoDataApp\n.gpsRepository| REPO
+    MA  -->|application as DemoDataApp\n.sessionManager| SM
 ```
 
 **`by lazy`:** cada propiedad se inicializa solo cuando se accede por primera vez y el resultado se reutiliza en llamadas posteriores. Si el servicio arranca antes que la Activity, la BD se crea en ese momento; cuando la Activity la pide, ya existe — no se crea dos veces.
@@ -1409,15 +1417,18 @@ Las sub-vistas de Perfil son estado interno de una sola pantalla, no destinos in
 
 **Cadena reactiva del Switch de modo oscuro:**
 
-```
-Switch.onCheckedChange(true)
-  → SessionViewModel.setDarkMode(true)
-  → SessionManager.edit { dark_mode = true }
-  → DataStore emite Boolean
-  → isDarkMode StateFlow emite true
-  → MainActivity: usarModoOscuro = true
-  → AppTheme(darkTheme = true)
-  → toda la UI recompone con el esquema oscuro
+```mermaid
+flowchart LR
+    SW[Switch.onCheckedChange true]
+    SVM[SessionViewModel\n.setDarkMode true]
+    SME[SessionManager.edit\ndark_mode = true]
+    DS[DataStore emite Boolean]
+    SF[isDarkMode StateFlow\nemite true]
+    MA[MainActivity\nusarModoOscuro = true]
+    AT[AppTheme\ndarkTheme = true]
+    UI[toda la UI recompone\ncon esquema oscuro]
+
+    SW --> SVM --> SME --> DS --> SF --> MA --> AT --> UI
 ```
 
 **"Directorio Local Interno"** muestra la ruta `/data/user/0/com.illareklab.demodata/files` — permite ver con Device File Explorer exactamente dónde se almacenan los datos locales de la app.
@@ -1479,23 +1490,27 @@ class MainActivity : ComponentActivity() {
 
 **Patrón de DI con `DemoDataApp`:**
 
-```
-DemoDataApp (proceso único, vive antes que cualquier Activity/Service)
-  ├── database      by lazy  → AppDatabase singleton
-  ├── gpsRepository by lazy  → GpsRepository(dao1, dao2)
-  └── sessionManager by lazy → SessionManager(context)
-            │
-MainActivity.onCreate()
-  ├── val app = application as DemoDataApp
-  ├── GpsViewModel(app.gpsRepository)     → ViewModel GPS
-  └── SessionViewModel(app.sessionManager) → ViewModel de sesión
-            │
-       AppNavigation(gpsVm, sessionVm)
-            ├── GpsScreen(viewModel = gpsVm)
-            └── ProfileScreen(sessionVm = sessionVm, onLogout = { sessionVm.logout() })
+```mermaid
+flowchart TD
+    APP[DemoDataApp\nproceso único]
+    DB[database by lazy\nAppDatabase singleton]
+    GR[gpsRepository by lazy\nGpsRepository dao1 dao2]
+    SM[sessionManager by lazy\nSessionManager context]
 
-GpsCaptureService.onCreate()
-  └── gpsRepo = (application as DemoDataApp).gpsRepository  ← misma instancia
+    MA[MainActivity.onCreate\nval app = application as DemoDataApp]
+    GPSVM[GpsViewModel\napp.gpsRepository]
+    SESVM[SessionViewModel\napp.sessionManager]
+    NAV[AppNavigation\ngpsVm · sessionVm]
+    GPS[GpsScreen\nviewModel = gpsVm]
+    PROF[ProfileScreen\nsessionVm = sessionVm]
+    SVC[GpsCaptureService.onCreate\ngpsRepo misma instancia]
+
+    APP --> DB & GR & SM
+    MA --> APP
+    MA --> GPSVM & SESVM
+    GPSVM & SESVM --> NAV
+    NAV --> GPS & PROF
+    SVC --> GR
 ```
 
 No se usa `ViewModelProvider` ni `hiltViewModel()` — los ViewModels se pasan directamente como parámetros hasta las pantallas que los necesitan. `DemoDataApp` actúa como contenedor de dependencias manual sin agregar ningún framework externo.
@@ -1506,45 +1521,45 @@ No se usa `ViewModelProvider` ni `hiltViewModel()` — los ViewModels se pasan d
 
 ### Ciclo GNSS
 
-```
-[GpsScreen] tap "Capturar coordenada"
-  → capturando = true
-  → context.startForegroundService(Intent(GpsCaptureService))
-      │
-  GpsCaptureService.onCreate()  → createNotificationChannel() → startForeground()
-  GpsCaptureService.onStartCommand()
-  → scope.launch { while(isActive) { performCaptures(); delay(10s) } }
-      │
-      ├── fusedClient.getCurrentLocation().await()    [suspende sin bloquear]
-      │     → Room INSERT gps_google
-      │
-      └── withTimeoutOrNull(5s) { getRawGpsLocation() }
-            └── suspendCancellableCoroutine → LocationManager.requestLocationUpdates
-            → Room INSERT gps_sensors  (latitude = null si timeout expira)
-      │
-Room Flow emite → GpsRepository → GpsViewModel
-  → combine(googlePoints, sensorsPoints) { ... }
-  → flowOn(Dispatchers.Default)
-  → StateFlow emite ComparativeGpsRecord
-  → GpsScreen recompone → ComparativeCaptureCard por instante
+```mermaid
+flowchart TD
+    BTN[GpsScreen tap Capturar]
+    SVC[GpsCaptureService.onCreate\ncreatNotifChannel + startForeground]
+    LOOP[onStartCommand\nwhile isActive performCaptures + delay 10s]
+    FLP[fusedClient.getCurrentLocation.await\nsuspende sin bloquear el hilo]
+    GPS[withTimeoutOrNull 5s\ngetRawGpsLocation\nsuspendCancellableCoroutine]
+    RG[(Room INSERT gps_google)]
+    RS[(Room INSERT gps_sensors\nlatitude=null si timeout expira)]
+    FLOW[Room Flow emite → GpsRepository]
+    VM[GpsViewModel\ncombine + flowOn Default]
+    SF[StateFlow emite\nComparativeGpsRecord]
+    UI[GpsScreen recompone\nComparativeCaptureCard]
+
+    BTN --> SVC --> LOOP
+    LOOP --> FLP --> RG
+    LOOP --> GPS --> RS
+    RG & RS --> FLOW --> VM --> SF --> UI
+    UI -.->|delay 10s| LOOP
 ```
 
 ### Ciclo tema
 
-```
-[MyProfileScreen] Switch ON
-  → SessionViewModel.setDarkMode(true)
-  → SessionManager.sessionDataStore.edit { dark_mode = true }
-  → DataStore emite Preferences
-  → isDarkMode Flow emite true
-  → SessionViewModel.isDarkMode StateFlow emite true
-  → MainActivity: usarModoOscuro = true
-  → AppTheme(darkTheme = true) → toda la UI recompone con esquema oscuro
+```mermaid
+flowchart TD
+    SW[MyProfileScreen Switch ON]
+    SVM[SessionViewModel.setDarkMode true]
+    SME[SessionManager.sessionDataStore.edit\ndark_mode = true]
+    DS[DataStore emite Preferences]
+    SF[isDarkMode StateFlow emite true]
+    AT[AppTheme darkTheme=true\ntoda la UI recompone con esquema oscuro]
 
-[ProfileMenu] botón "Cerrar sesión" → AlertDialog → "Sí, cerrar"
-  → SessionViewModel.logout()
-  → DataStore.clear() preservando KEY_DARK_MODE
-  → isLoggedIn Flow emite false
+    BTN[ProfileMenu botón Cerrar sesión\nAlertDialog → Sí cerrar]
+    LG[SessionViewModel.logout]
+    CLR[DataStore.clear\npreservando KEY_DARK_MODE]
+    IL[isLoggedIn Flow emite false]
+
+    SW  --> SVM --> SME --> DS --> SF --> AT
+    BTN --> LG  --> CLR --> IL
 ```
 
 ---
