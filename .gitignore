@@ -5,3 +5,5 @@ _site
 Gemfile.lock
 *.code-workspace
 docs/jobs
+
+clases/mobile/not-used
