@@ -1,4 +1,4 @@
-# Lab 6 — Retrofit, Autenticación API y Navegación Anidada
+# Lab 7 — Retrofit, Autenticación API y Navegación Anidada
 
 **Autor:** [illarek-lab](https://github.com/illarek-lab)
 **Proyecto:** DemoData · `com.illareklab.demodata`
