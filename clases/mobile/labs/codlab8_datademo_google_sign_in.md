@@ -857,3 +857,123 @@ fun loginWithGoogle(googleToken: String, onResult: (Boolean) -> Unit) {
 - [ ] Al seleccionar una cuenta, la app navega a la pantalla principal
 - [ ] En Logcat (filtrar `okhttp`) se ve el POST a `/auth/google` con el token
 - [ ] Al cerrar y abrir la app, la sesión persiste (DataStore mantiene `is_logged_in = true`)
+
+---
+
+## 15. (Opcional) Mejora: `GetSignInWithGoogleOption` y manejo granular de excepciones
+
+> **Cuándo aplicar:** esta sección documenta un refinamiento posterior al lab base. Solo aplica si quieres seguir los lineamientos oficiales de Google para el botón de Sign-In estándar y separar los errores de cancelación de los errores reales.
+
+La versión del lab usa `GetGoogleIdOption`, que está orientada a flujos programáticos (selección automática de cuenta). Google recomienda `GetSignInWithGoogleOption` cuando el usuario toca un **botón explícito** de "Continuar con Google", porque siempre muestra el selector con la opción de añadir una cuenta nueva.
+
+### 15.1 Qué cambia en `LoginScreen.kt`
+
+Solo se modifica `handleGoogleLogin()` y sus imports. El resto del archivo queda igual.
+
+#### Imports: se reemplaza `GetGoogleIdOption` por `GetSignInWithGoogleOption` y se agregan las excepciones tipadas
+
+```diff
+ import androidx.credentials.CredentialManager
+ import androidx.credentials.CustomCredential
+ import androidx.credentials.GetCredentialRequest
+-import com.google.android.libraries.identity.googleid.GetGoogleIdOption
++import androidx.credentials.exceptions.GetCredentialCancellationException
++import androidx.credentials.exceptions.NoCredentialException
++import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
+ import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+```
+
+#### Refactor de `handleGoogleLogin()`: se extrae `processCredentialResult()` y se simplifica el Builder
+
+```diff
++    suspend fun processCredentialResult(result: androidx.credentials.GetCredentialResponse) {
++        val credential = result.credential
++        if (credential is CustomCredential &&
++            credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
++            val idToken = GoogleIdTokenCredential.createFrom(credential.data).idToken
++            verificando = true
++            onGoogleLogin(idToken) { success ->
++                verificando = false
++                if (!success) error = "El servidor no reconoció la cuenta de Google"
++            }
++        }
++    }
++
+     fun handleGoogleLogin() {
+         scope.launch {
+             try {
+-                val googleIdOption = GetGoogleIdOption.Builder()
+-                    .setFilterByAuthorizedAccounts(false)
+-                    .setServerClientId(NetworkConstants.GOOGLE_WEB_CLIENT_ID)
+-                    .setAutoSelectEnabled(true)
++                val signInOption = GetSignInWithGoogleOption
++                    .Builder(NetworkConstants.GOOGLE_WEB_CLIENT_ID)
+                     .build()
+ 
+                 val request = GetCredentialRequest.Builder()
+-                    .addCredentialOption(googleIdOption)
++                    .addCredentialOption(signInOption)
+                     .build()
+ 
+                 val result = credentialManager.getCredential(context = context, request = request)
++                processCredentialResult(result)
+ 
+-                val credential = result.credential
+-                if (credential is CustomCredential && credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+-                    val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+-                    val idToken = googleIdTokenCredential.idToken
+-                    verificando = true
+-                    onGoogleLogin(idToken) { success ->
+-                        verificando = false
+-                        if (!success) error = "Error al autenticar con Google"
+-                    }
+-                }
++            } catch (e: GetCredentialCancellationException) {
++                error = ""
++            } catch (e: NoCredentialException) {
++                error = "No se pudo abrir el selector. Asegúrate de tener conexión y Google Play Services al día."
+             } catch (e: Exception) {
+-                error = "Cancelado o error: ${e.message}"
++                error = "Error al conectar con Google: ${e.localizedMessage}"
+             }
+         }
+     }
+```
+
+### 15.2 Qué cambia conceptualmente
+
+```mermaid
+flowchart LR
+    subgraph "Versión base del lab"
+        A1["GetGoogleIdOption<br/>+ setFilterByAuthorizedAccounts(false)<br/>+ setAutoSelectEnabled(true)"]
+        B1["catch (e: Exception)<br/>error = 'Cancelado o error: ...'"]
+    end
+
+    subgraph "Versión mejorada (opcional)"
+        A2["GetSignInWithGoogleOption<br/>solo necesita el Client ID<br/>siempre muestra 'Añadir cuenta'"]
+        B2["catch (e: GetCredentialCancellationException) → error = ''\ncatch (e: NoCredentialException) → mensaje descriptivo\ncatch (e: Exception) → error genérico"]
+    end
+
+    style A2 fill:#a8a6c9
+    style B2 fill:#a8a6c9
+```
+
+| Aspecto | `GetGoogleIdOption` (base) | `GetSignInWithGoogleOption` (mejorada) |
+|---|---|---|
+| Tipo de flujo | Programático / silencioso | Botón explícito |
+| Opción "Añadir cuenta" | No siempre visible | Siempre visible |
+| Parámetros del Builder | `setFilterByAuthorizedAccounts`, `setAutoSelectEnabled`, `setServerClientId` | Solo `clientId` — más simple |
+| Cancelación del usuario | Entra al `catch (Exception)` con mensaje de error visible | `GetCredentialCancellationException` → `error = ""` (sin mensaje) |
+| Sin credenciales | Entra al `catch (Exception)` con mensaje genérico | `NoCredentialException` → mensaje específico y orientado al usuario |
+| Recomendado por Google para | Flujo silencioso (ej. re-auth automático) | Botón "Continuar con Google" en UI |
+
+### 15.3 Por qué separar `processCredentialResult()` como `suspend fun`
+
+En la versión base, toda la lógica de extraer el `idToken` vivía dentro de la lambda de `scope.launch`. Al extraerla en una `suspend fun` separada se consiguen dos cosas:
+
+1. **`handleGoogleLogin()` queda enfocado en obtener la credencial + manejo de errores** — más legible
+2. **`processCredentialResult()` puede reutilizarse** si en el futuro se agrega un flujo de re-autenticación silenciosa (por ejemplo, en `LaunchedEffect` al abrir la app)
+
+### 15.4 Por qué el catch de cancelación deja `error = ""`
+
+Cuando el usuario cierra el bottom sheet de Google sin seleccionar una cuenta, no cometió ningún error — simplemente cambió de opinión. Mostrar un mensaje de error en ese caso es un anti-patrón de UX. `GetCredentialCancellationException` permite distinguir exactamente ese caso y limpiar el estado de error en vez de mostrarlo.
